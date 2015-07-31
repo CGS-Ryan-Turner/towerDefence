@@ -1,0 +1,1467 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		Tower Defence
+	</title>
+	<style>
+	    body {
+	        background-color: #007500;
+	    }
+	    #block1 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 350px;
+	        height: 100px;
+	        top: 400px;
+	        left: -50px;
+	        border-radius:50px;
+	    }
+	    #block2 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 100px;
+	        height: 200px;
+	        top: 400px;
+	        left: 200px;
+	        border-radius:50px;
+	    }
+	    #block3 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 700px;
+	        height: 100px;
+	        top: 500px;
+	        left: 200px;
+	        border-radius:50px;
+	    }
+	    #block4 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 100px;
+	        height: 500px;
+	        top: 100px;
+	        left: 800px;
+	        border-radius:50px;
+	    }
+	    #block5 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 700px;
+	        height: 100px;
+	        top: 100px;
+	        left: 200px;
+	        border-radius:50px;
+	    }
+	    #block6 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 100px;
+	        height: 200px;
+	        top: 100px;
+	        left: 200px;
+	        border-radius:50px;
+	    }
+	    #block7 {
+	        background-color: gray;
+	        position: fixed;
+	        width: 350px;
+	        height: 100px;
+	        top: 200px;
+	        left: -50px;
+	        border-radius:50px;
+	    }
+	    #aroundBlock1 {
+	        position: fixed;
+	        width: 350px;
+	        height: 100px;
+	        top: 400px;
+	        left: -50px;
+	    }
+	    #aroundBlock2 {
+	        position: fixed;
+	        width: 100px;
+	        height: 200px;
+	        top: 400px;
+	        left: 200px;
+	    }
+	    #aroundBlock3 {
+	        position: fixed;
+	        width: 700px;
+	        height: 100px;
+	        top: 500px;
+	        left: 200px;
+	    }
+	    #aroundBlock4 {
+	        position: fixed;
+	        width: 100px;
+	        height: 500px;
+	        top: 100px;
+	        left: 800px;
+	    }
+	    #aroundBlock5 {
+	        position: fixed;
+	        width: 700px;
+	        height: 100px;
+	        top: 100px;
+	        left: 200px;
+	    }
+	    #aroundBlock6 {
+	        position: fixed;
+	        width: 100px;
+	        height: 200px;
+	        top: 100px;
+	        left: 200px;
+	    }
+	    #aroundBlock7 {
+	        position: fixed;
+	        width: 350px;
+	        height: 100px;
+	        top: 200px;
+	        left: -50px;
+	    }
+	    #towerPlacing {
+	        position: fixed;
+	        width: 1000px;
+	        height: 700px;
+	        top: 0px;
+	        left: 0px;
+	        background-color: #007500;
+	        border: 5px solid gray;
+	    }
+	    @-webkit-keyframes moveToPlace{
+      	0%{transform:rotate(0deg);top:0px;left:20%;}
+      	100%{transform:rotate(0deg);top:100px;left:20%;}
+      }
+	  
+	  #selectTower {
+	    position: fixed;
+	    background-color: rgba(0,0,255,0.2);
+	    top: 1px;
+	    left: 1px;
+	    z-index: 50;
+	    text-align: center;
+	    font-size: 10px;
+	  }
+	  
+	  #archerTower {
+	      position: relative;
+	      height: 25px;
+	      width: 25px;
+	      top: 0px;
+	      left: 0px;
+	      background-color: blue;
+	  }
+	  #bombTower {
+	      position: relative;
+	      height: 25px;
+	      width: 25px;
+	      top: -25px;
+	      left: 75px;
+	      background-color: purple;
+	  }
+	  #sniperTower {
+	      position: relative;
+	      height: 25px;
+	      width: 25px;
+	      top: 14px;
+	      left: 0px;
+	      background-color: red;
+	  }
+	  #magicianTower {
+	      position: relative;
+	      height: 25px;
+	      width: 25px;
+	      top: -11px;
+	      left: 75px;
+	      background-color: yellow;
+	  }
+	  #upgradeTower {
+	      position: fixed;
+	      background-color: rgba(0,0,255,0.2);
+	      top: 1px;
+	      left: 1px;
+	      z-index: 50;
+	      text-align: center;
+	      color: red;
+	      font-size: 15px;
+	  }
+	  #sellTower {
+	      position: relative;
+	      height: 25px;
+	      width: 25px;
+	      top: 0px;
+	      left: 0px;
+	      background-color: yellow;
+	  }
+	  #upgrade {
+	      position: relative;
+	      height: 25px;
+	      width: 25px;
+	      top: -25px;
+	      left: 75px;
+	      background-color: yellow;
+	  }
+	  #playButton {
+	      position: fixed;
+	      top: 10px;
+	      left: 1050px;
+	      background-color: yellow;
+	      border: 3px solid black;
+	      border-style: outset;
+	      text-align: center;
+	      width: 150px;
+	      height: 75px;
+	      box-shadow: 10px 10px 5px black;
+	  }
+	  #moneyAndScoreDisplay {
+	      position: fixed;
+	      top: 100px;
+	      left: 1050px;
+	      text-align: center;
+	      width: 150px;
+	      height: 75px;
+	  }
+	  #moneyDisplay {
+	      color: yellow;
+	  }
+	  #scoreDisplay {
+	      color: blue;
+	  }
+	  #livesDisplay {
+	      color: red;
+	  }
+	  @-webkit-keyframes track{
+      	0%{transform:rotate(0deg);top:425px;left:-75px;}
+      	4%{transform:rotate(0deg);top:425px;left:25px;}
+      	8%{transform:rotate(0deg);top:425px;left:125px;}
+      	12%{transform:rotate(0deg);top:425px;left:225px;}
+      	16%{transform:rotate(0deg);top:525px;left:225px;}
+      	20%{transform:rotate(0deg);top:525px;left:325px;}
+      	24%{transform:rotate(0deg);top:525px;left:425px;}
+      	28%{transform:rotate(0deg);top:525px;left:525px;}
+      	32%{transform:rotate(0deg);top:525px;left:625px;}
+      	36%{transform:rotate(0deg);top:525px;left:725px;}
+      	40%{transform:rotate(0deg);top:525px;left:825px;}
+      	44%{transform:rotate(0deg);top:425px;left:825px;}
+      	48%{transform:rotate(0deg);top:325px;left:825px;}
+      	52%{transform:rotate(0deg);top:225px;left:825px;}
+      	56%{transform:rotate(0deg);top:125px;left:825px;}
+      	60%{transform:rotate(0deg);top:125px;left:725px;}
+      	64%{transform:rotate(0deg);top:125px;left:625px;}
+      	68%{transform:rotate(0deg);top:125px;left:525px;}
+      	72%{transform:rotate(0deg);top:125px;left:425px;}
+      	76%{transform:rotate(0deg);top:125px;left:325px;}
+      	80%{transform:rotate(0deg);top:125px;left:225px;}
+      	84%{transform:rotate(0deg);top:225px;left:225px;}
+      	88%{transform:rotate(0deg);top:225px;left:125px;}
+      	92%{transform:rotate(0deg);top:225px;left:25px;}
+      	96%{transform:rotate(0deg);top:225px;left:-75px;}
+      	100%{transform:rotate(0deg);top:-1000px;left:-1000px;}
+      }
+      #test {
+          position: fixed;
+          height: 50px;
+          width: 50px;
+          background-color: red;
+          -webkit-animation:track 25s infinite;
+          -webkit-border-radius:5px;
+      }
+      .enemy {
+        position: fixed;
+        -webkit-animation:none 25s forwards;
+        -webkit-border-radius:5px;
+      }
+      .arrow {
+        position: fixed;
+        top: -100px;
+        left: -100px;
+        z-index: 10;
+        -webkit-animation:none 0.5s forwards;
+        -webkit-border-radius:5px;
+      }
+      .magic {
+        position: fixed;
+        top: -100px;
+        left: -100px;
+        z-index: 10;
+        -webkit-animation:none 0.5s forwards;
+        -webkit-border-radius:5px;  
+      }
+      .bullet {
+        position: fixed;
+        top: -100px;
+        left: -100px;
+        z-index: 10;
+        -webkit-animation:none 0.4s forwards;
+        -webkit-border-radius:5px;  
+      }
+      .bomb {
+        position: fixed;
+        top: -100px;
+        left: -100px;
+        z-index: 10;
+        -webkit-animation:none 0.5s forwards;
+        -webkit-border-radius:5px;   
+      }
+      .explosion {
+        position: fixed;
+        width: 200px;
+        height: 200px;
+      }
+      @-webkit-keyframes shoot {
+      	0%{transform:rotate(0deg);top:-100px;left:200px;}
+      	100%{transform:rotate(0deg);top:-100px;left:300px;}
+      }
+      #towerInfoDisplay {
+        position: fixed;
+        top: 300px;
+	    left: 1030px;
+	    background-color: gray;
+	    border: 3px solid black;
+        border-style: outset;
+	    text-align: center;
+	    width: 225px;
+	    height: 300px;
+	    padding-top: 10px;
+      }
+      .upgradeText {
+        color: green;  
+      }
+	</style>
+	<script>
+	    //-webkit-animation:moveToPlace 2s infinite;
+	    var arrayToReturn = []
+	    var allowedToBuildTower = true
+	    var arrayOfTowers = []
+	    var levelToUpgrade = 1
+	    var canPlay = true
+	    var lvl = 1
+	    var numberOfEnemies = 0
+	    var arrowToUse = 0
+	    var magicBallToUse = 0
+	    var bulletToUse = 0
+	    var bombToUse = 0
+	    var explosion = 0
+	    var bombsDeleted = 0
+	    var arrayOfEnemies = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
+	    var arrayOfEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
+	    var arrayOfOriginalEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
+	    var lvl1 = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
+	    function dontBuildTower() {
+	        alert("You cannot build a tower on roads!")
+	        allowedToBuildTower = false
+	    }
+	    
+	    function constructTower(towerName) {
+	        place = "" + x + "" + y
+	        //console.log("Attempting to construct " + towerName + " at " + place)
+	        arrayOfTowers.push(place)
+	        arrayOfTowers.push(towerName)
+	        arrayOfTowers.push("1")
+	        document.getElementById("towerPlacing").innerHTML+="<div id = '" + place + "'; class = '" + towerName + "'; style='width:100px;height:100px;top:" + arrayToReturn[1] + "px;left:" + arrayToReturn[0] + "px;position:fixed;'><img id = '" + place + "" + towerName + "'; src=" + towerName + "TowerLvl1.jpg height=100px; width=100px; /></div>"
+	        towerInfo = ["<strong>Tower Info:</strong> <br>  Archer lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 30 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  30 -> 40 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 25% -> 30%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  75 -> 100 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 5% -> 10%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  50 -> 75 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$"]
+	        towerInfoBlock = document.getElementById("towerInfoDisplay")
+	        if (towerName == "archer") {
+	            towerInfoBlock.innerHTML = towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
+	            damage = 25
+	            archerTowerLvl1(place, x, y, damage, "archer")
+	        }
+	        if (towerName == "magician") {
+	            towerInfoBlock.innerHTML = towerInfo[6] + "" + towerInfo[7] + "" + towerInfo[8] + "" + towerInfo[9] + "" + towerInfo[10] + "" + towerInfo[11]
+	            damage = 30
+	            wizardTowerLvl1(place, x, y, damage, "magician")
+	        }
+	        if (towerName == "sniper") {
+	            towerInfoBlock.innerHTML = towerInfo[12] + "" + towerInfo[13] + "" + towerInfo[14] + "" + towerInfo[15] + "" + towerInfo[16] + "" + towerInfo[17]
+	            damage = 75
+	            wizardTowerLvl1(place, x, y, damage, "sniper")
+	        }
+	        if (towerName == "bomb") {
+	            towerInfoBlock.innerHTML = towerInfo[18] + "" + towerInfo[19] + "" + towerInfo[20] + "" + towerInfo[21] + "" + towerInfo[22] + "" + towerInfo[23]
+	            damage = 50
+	            wizardTowerLvl1(place, x, y, damage, "bomb")
+	        }
+	        return arrayOfTowers
+	    }
+	    
+	    function buildTower() {
+	        if (allowedToBuildTower) {
+	            clickX = 0
+                clickY = 0
+                handleEvent(event, clickX, clickY);
+                
+                x = x - 2/3
+                y = y - 2/3
+                
+                if (x < 100) {
+                    x = 0
+                } else if (x < 200) {
+                    x = 100
+                } else if (x < 300) {
+                    x = 200
+                } else if (x < 400) {
+                    x = 300
+                } else if (x < 500) {
+                    x = 400
+                } else if (x < 600) {
+                    x = 500
+                } else if (x < 700) {
+                    x = 600
+                } else if (x < 800) {
+                    x = 700
+                } else if (x < 900) {
+                    x = 800
+                } else {
+                    x = 900
+                }
+                
+                if (y < 100) {
+                    y = 0
+                } else if (y < 200) {
+                    y = 100
+                } else if (y < 300) {
+                    y = 200
+                } else if (y < 400) {
+                    y = 300
+                } else if (y < 500) {
+                    y = 400
+                } else if (y < 600) {
+                    y = 500
+                } else {
+                    y = 600
+                } 
+                console.log(x, y)
+                if (y >= 200 && y <= 300 && x >= 0 && x < 300) {
+                    alert("You cannot build a tower on roads!")
+                    //console.log("1")
+                    return x
+                } else if (y >= 400 && y < 500 && x >= 0 && x < 300) {
+                    alert("You cannot build a tower on roads!")
+                    //console.log("2")
+                    return x
+                } else if (y >= 100 && y < 200 && x >= 200 && x < 900) {
+                    alert("You cannot build a tower on roads!")
+                    //console.log("3")
+                    return x
+                } else if (y >= 500 && y < 600 && x >= 200 && x < 900) {
+                    alert("You cannot build a tower on roads!")
+                    //console.log("4")
+                    return x
+                } else if (y >= 100 && y < 600 && x >= 800 && x < 900) {
+                    alert("You cannot build a tower on roads!")
+                    //console.log("5")
+                    return x
+                } else {
+                    //console.log("Correct placement.")
+                }
+                var i = 0
+                var varToCheck = "" + x + "" + y
+                var upgradeOrConstruct = "construct"
+                while (i < arrayOfTowers.length) {
+                    if (arrayOfTowers[i] == varToCheck) {
+                        upgradeOrConstruct = "upgrade"
+                        var upgradeTower = document.getElementById("upgradeTower");
+                        var fromTop = upgradeTower.style.top;
+                        positionFromTop = "" + y + "px"
+                        upgradeTower.style.top = positionFromTop;
+                        var fromLeft = upgradeTower.style.left;
+                        positionFromLeft = "" + x + "px"
+                        upgradeTower.style.left = positionFromLeft;
+                        
+                        var selectTower = document.getElementById("selectTower");
+                        selectTower.style.top = "-100px"
+                        selectTower.style.left = "-100px"
+                    }
+                    i = i + 3
+                }
+                if (upgradeOrConstruct == "construct") {
+                
+                    var selectTower = document.getElementById("selectTower");
+                    var fromTop = selectTower.style.top;
+                    positionFromTop = "" + y + "px"
+                    selectTower.style.top = positionFromTop;
+                    var fromLeft = selectTower.style.left;
+                    positionFromLeft = "" + x + "px"
+                    selectTower.style.left = positionFromLeft;
+                
+                    var selectTower = document.getElementById("upgradeTower");
+                    selectTower.style.top = "-100px"
+                    selectTower.style.left = "-100px"
+                }
+                /*
+                var keyframes = findKeyframesRule("moveToPlace");
+                
+                // remove the existing 0% and 100% rules
+                keyframes.deleteRule("0%");
+                keyframes.deleteRule("100%");
+                // create new 0% and 100% rules with random numbers randomFromTo(-360,360)
+                console.log(keyframes)
+                //@-webkit-keyframes moveToPlace { ↵  0% { transform: rotate(0deg); top: 509px; left: 506px; }↵  100% { transform: rotate(0deg); top: 509px; left: 506px; }↵}
+                //@-webkit-keyframes r { ↵  0% { transform: rotate(0deg); top: 286px; left: 84px; }↵  0% { transform: rotate(0deg); top: 0px; left: 0px; }↵  100% { transform: rotate(0deg); top: 286px; left: 84px; }↵}
+                //@-webkit-keyframes r { ↵  0% { transform: rotate(0deg); top: 0px; left: 0px; }↵  0% { transform: rotate(0deg); top: 367px; left: 66px; }↵  0% { transform: rotate(0deg); top: 0px; left: 0px; }↵  100% { transform: rotate(0deg); top: 367px; left: 66px; }↵}
+                keyframes.insertRule("0%{transform:rotate(0deg);top:" + x + "px;left:" + y + "px;}");
+                keyframes.insertRule("100%{transform:rotate(0deg);top:" + x + "px;left:" + y + "px; }");
+                document.getElementById("selectTower").style.webkitAnimationName = "moveToPlace";
+                */
+                arrayToReturn = [x, y]
+                return arrayToReturn
+	        }
+	        allowedToBuildTower = true
+	    }
+	    function handleEvent(e, clickX1, clickY1){
+                 var evt = e ? e:window.event;
+                 var clickX=0, clickY=0;
+                
+                 if ((evt.clientX || evt.clientY) &&
+                     document.body &&
+                     document.body.scrollLeft!=null) {
+                  clickX = clickX + evt.clientX + document.body.scrollLeft;
+                  clickY = clickY + evt.clientY + document.body.scrollTop;
+                 }
+                 if ((evt.clientX || evt.clientY) &&
+                     document.compatMode=='CSS1Compat' && 
+                     document.documentElement && 
+                     document.documentElement.scrollLeft!=null) {
+                  clickX = clickX + evt.clientX + document.documentElement.scrollLeft;
+                  clickY = clickY + evt.clientY + document.documentElement.scrollTop;
+                 }
+                 if (evt.pageX || evt.pageY) {
+                  clickX = clickX + evt.pageX;
+                  clickY = clickY + evt.pageY;
+                 }
+              
+                 //alert (evt.type.toUpperCase() + ' mouse event:'
+                  //+'\n pageX = ' + clickX
+                  //+'\n pageY = ' + clickY 
+                  //+'\n clientX = ' + evt.clientX
+                  //+'\n clientY = '  + evt.clientY 
+                  //+'\n screenX = ' + evt.screenX 
+                  //+'\n screenY = ' + evt.screenY
+                 //)
+                 
+                 clickY = clickY1 + clickY
+                 clickX = clickX1 + clickX
+                 x = clickX/3
+                 y = clickY/3
+                 return x, y;
+                 clickY++
+                 
+                //bullet = document.getElementById("rocket")
+                //bullet.style.webkit-keyframes = "0%{transform:rotate(0deg);top:100px;left:100px;};100%:{transform:rotate(0deg);top:" + clickX + "px;left:" + clickY + "px;}"
+                  
+        }
+        function findKeyframesRule(rule){
+        // gather all stylesheets into an array
+        var ss = document.styleSheets;
+        
+            for (var i = 0; i < ss.length; ++i) {
+                
+                for (var j = 0; j < ss[i].cssRules.length; ++j) {
+                    
+                    if (ss[i].cssRules[j].type == window.CSSRule.WEBKIT_KEYFRAMES_RULE && ss[i].cssRules[j].name == rule) {
+                        return ss[i].cssRules[j];
+                    }
+                }
+            }
+            return null;
+        }
+                
+        function sell() {
+            var thingToSell = "" + x + "" + y
+            var elem = document.getElementById(thingToSell);
+            elem.parentNode.removeChild(elem)
+            
+            console.log("Sold")
+            
+            var i = 0
+            while (i < arrayOfTowers.length) {
+                //console.log("[][][]" + i + " " + arrayOfTowers[i] + " " + thingToSell)
+                if (arrayOfTowers[i] == thingToSell) {
+                   // console.log(arrayOfTowers)
+                   //console.log("deleting")
+                   arrayOfTowers.splice(i, 1);
+                   arrayOfTowers.splice(i, 1);
+                   arrayOfTowers.splice(i, 1);
+                   //console.log(arrayOfTowers)
+                }
+                i = i + 3
+            }
+            return arrayOfTowers
+        }
+                
+        function upgrade() {
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+            var thingToUpgrade = "" + x + "" + y
+            var towerToUpgrade = document.getElementById(thingToUpgrade)
+            var i = 0
+            var towerTypeToUpgrade = ""
+            var allowedToUpgrade = false
+            while (i < arrayOfTowers.length) {
+                //console.log(arrayOfTowers[i] + " " + thingToUpgrade)
+                if (arrayOfTowers[i] == thingToUpgrade) {
+                    if (parseInt(arrayOfTowers[i + 2]) != 5) {
+                        levelToUpgrade = parseInt(arrayOfTowers[i + 2]) + 1
+                        towerTypeToUpgrade = arrayOfTowers[i + 1]
+                        console.log(" " + i + " " + arrayOfTowers[i])
+                        arrayOfTowers[i + 2] = parseInt(arrayOfTowers[i + 2]) + 1
+                        allowedToUpgrade = true
+                        towerToUpgrade = document.getElementById(arrayOfTowers[i] + "" + arrayOfTowers[i + 1])
+                    } else {
+                        alert("This is that tower's max level! Upgrade failed!")
+                    }
+                }
+                i = i + 3
+            }
+            if (allowedToUpgrade) {
+                console.log("!!!! " + levelToUpgrade + " " + towerTypeToUpgrade)
+                imageToUpgrade = "" + towerTypeToUpgrade + "TowerLvl" + levelToUpgrade + ".jpg"
+                //console.log(imageToUpgrade)
+                console.log(towerToUpgrade.src + " " + thingToUpgrade + " " + imageToUpgrade)
+                towerToUpgrade.src = imageToUpgrade
+            }
+            return arrayOfTowers
+        }
+                
+        function play() {
+            console.log("[]PLAY[]")
+            if (canPlay) {
+                canPlay = false 
+                changePlayButton = document.getElementById("playButton")
+                changePlayButton.style.boxShadow = "0px 0px 0px black"
+                changePlayButton.style.top = "20px"
+                changePlayButton.style.left = "1050px"
+                changePlayButton.style.backgroundColor = "orange";
+                var delay = 1000
+                var i = 0
+                var numberOfEnemiesPrinted = 0
+                var numberOfEnemiesTaken = 0
+                lvl++
+                setTimeout(function(){
+                    changePlayButton = document.getElementById("playButton")
+                    changePlayButton.style.boxShadow = "10px 10px 5px black"
+                    changePlayButton.style.top = "10px"
+                    changePlayButton.style.left = "1040px"
+                    changePlayButton.style.backgroundColor = "gray";
+                }, delay);
+                setTimeout(function(){
+                    lvlToPlay = "lvl" + 1
+                    //lvlToPlay = "lvl" + lvl
+                    console.log(lvlToPlay)
+                    if (lvlToPlay = "lvl1") {
+                        numberOfEnemies = 20 
+                    }
+                    while (i < numberOfEnemies - 1) {
+                        setTimeout(function(){
+                            numberOfEnemiesPrinted++
+                            //console.log("" + lvl1[numberOfEnemiesPrinted - 1] + " " + numberOfEnemiesPrinted + "" + " " + numberOfEnemies)
+                            var enemyToSpawn = document.getElementById(lvl1[numberOfEnemiesPrinted - 1])
+                            enemyToSpawn.style.webkitAnimationName = "track"
+                            setTimeout(function(){
+                                
+                                numberOfEnemiesTaken++
+                                //console.log(delay + " " + numberOfEnemiesTaken + " ")
+                                //console.log("despawned")
+                                var enemyToDeSpawn = document.getElementById(lvl1[numberOfEnemiesTaken - 1])
+                                enemyToDeSpawn.style.webkitAnimationName = "none"
+                                if (numberOfEnemiesTaken + 1 == numberOfEnemies) {
+                                    canPlay = true;
+                                    changePlayButton = document.getElementById("playButton")
+                                    changePlayButton.style.backgroundColor = "yellow";
+                                    console.log("Wave Despawned")
+                                }
+                            }, delay * 25)
+                            
+                        }, delay * (i + 1), i)
+                        
+                        i++
+                    }
+                }, delay * 2);
+            }
+        }
+        function checkForHit(tower, x, y, range, damage, damageMultiplier, towerType) {
+            var i = 0
+            
+            random = Math.floor((Math.random() * 100) + 1)
+            if (random < damageMultiplier) {
+                damage = damage*2
+                if (towerType == "sniper") {
+                    damage = 500
+                }
+                //console.log("Double Damage!")
+            }
+            
+            //console.log("Checking for hit from " + tower + " tower")
+            while (i < arrayOfEnemies.length) {
+                var towerInRange = doElsCollide(tower, arrayOfEnemies[i], range)
+                
+                if (towerInRange[0]) {
+                    hurtEnemy(arrayOfEnemies[i], damage, i)
+                    if (towerType == "archer") {
+                        //console.log(i + " true archer ", arrowToUse)
+                        arrowToUse++
+                        if (arrowToUse == 21) {
+                            arrowToUse = 1
+                        }
+                        document.getElementById("arrow" + arrowToUse).style.webkitAnimationName = "none";
+                        document.getElementById("arrow" + arrowToUse).style.top = "-100px"
+                        document.getElementById("arrow" + arrowToUse).style.left = "-100px"
+            
+                        //console.log(clickX, clickY) 1000
+                        
+                        // call the change method, which will update the keyframe animation
+                        setTimeout(function(){changeArrow("shoot", x, y, arrowToUse);}, 0);
+                        
+                        function changeArrow(anim, cX, cY, arrowToUse) {
+                            // find our -webkit-keyframe rule
+                            var keyframes = findKeyframesRule(anim);
+                            
+                            //console.log(keyframes)
+                            
+                            // remove the existing 0% and 100% rules
+                            keyframes.deleteRule("0%");
+                            keyframes.deleteRule("100%");
+                            //console.log(towerInRange)
+                            // create new 0% and 100% rules with random numbers randomFromTo(-360,360)
+                            keyframes.insertRule("0%{transform:rotate(0deg);top:" + towerInRange[3] + "px;left:" + towerInRange[4] + "px;}");
+                            keyframes.insertRule("100%{transform:rotate(0deg);top:" + towerInRange[1] + "px;left:" + towerInRange[2] + "px; }");
+                            //console.log("100%{transform:rotate(0deg);top:" + cY + "px;left:" + cX + "px; }")
+                            // assign the animation to our element (which will cause the animation to run)
+                            document.getElementById("arrow" + arrowToUse).style.webkitAnimationName = anim;
+                            setTimeout(function(){
+                                    
+                                arrowToDelete = document.getElementById("arrow" + arrowToUse)
+                                arrowToDelete.style.webkitAnimationName = "none"
+                                arrowToDelete.style.top = "-100px;"
+                                arrowToDelete.style.left = "-100px;"
+                                    
+                            }, 500);
+                        }
+                        return arrowToUse;
+                    }
+                    if (towerType == "magician") {
+                        //console.log(i + " true magic ", magicBallToUse)
+                        magicBallToUse++
+                        if (magicBallToUse == 21) {
+                            magicBallToUse = 1
+                        }
+                        document.getElementById("magicBall" + magicBallToUse).style.webkitAnimationName = "none";
+                        document.getElementById("magicBall" + magicBallToUse).style.top = "-100px"
+                        document.getElementById("magicBall" + magicBallToUse).style.left = "-100px"
+            
+                        //console.log(clickX, clickY) 1000
+                        
+                        // call the change method, which will update the keyframe animation
+                        setTimeout(function(){changeMagic("shoot", x, y, magicBallToUse);}, 0);
+                        
+                        function changeMagic(anim, cX, cY, magicBallToUse) {
+                            // find our -webkit-keyframe rule
+                            var keyframes = findKeyframesRule(anim);
+                            
+                            //console.log(keyframes)
+                            
+                            // remove the existing 0% and 100% rules
+                            keyframes.deleteRule("0%");
+                            keyframes.deleteRule("100%");
+                            //console.log(towerInRange)
+                            // create new 0% and 100% rules with random numbers randomFromTo(-360,360)
+                            keyframes.insertRule("0%{transform:rotate(0deg);top:" + towerInRange[3] + "px;left:" + towerInRange[4] + "px;}");
+                            keyframes.insertRule("100%{transform:rotate(0deg);top:" + towerInRange[1] + "px;left:" + towerInRange[2] + "px; }");
+                            //console.log("100%{transform:rotate(0deg);top:" + cY + "px;left:" + cX + "px; }")
+                            // assign the animation to our element (which will cause the animation to run)
+                            document.getElementById("magicBall" + magicBallToUse).style.webkitAnimationName = anim;
+                                setTimeout(function(){
+                                    
+                                    arrowToDelete = document.getElementById("magicBall" + magicBallToUse)
+                                    arrowToDelete.style.webkitAnimationName = "none"
+                                    arrowToDelete.style.top = "-100px;"
+                                    arrowToDelete.style.left = "-100px;"
+                                    
+                                }, 500);
+                            }
+                            return magicBallToUse;
+                        }
+                        if (towerType == "sniper") {
+                        //console.log(i + " true sniper ", bulletToUse)
+                        bulletToUse++
+                        if (bulletToUse == 21) {
+                            bulletToUse = 1
+                        }
+                        document.getElementById("bullet" + bulletToUse).style.webkitAnimationName = "none";
+                        document.getElementById("bullet" + bulletToUse).style.top = "-100px"
+                        document.getElementById("bullet" + bulletToUse).style.left = "-100px"
+            
+                        //console.log(clickX, clickY) 1000
+                        
+                        // call the change method, which will update the keyframe animation
+                        setTimeout(function(){changeBullet("shoot", x, y, bulletToUse);}, 0);
+                        
+                        function changeBullet(anim, cX, cY, bulletToUse) {
+                            // find our -webkit-keyframe rule
+                            var keyframes = findKeyframesRule(anim);
+                            
+                            //console.log(keyframes)
+                            
+                            // remove the existing 0% and 100% rules
+                            keyframes.deleteRule("0%");
+                            keyframes.deleteRule("100%");
+                            //console.log(towerInRange)
+                            // create new 0% and 100% rules with random numbers randomFromTo(-360,360)
+                            keyframes.insertRule("0%{transform:rotate(0deg);top:" + towerInRange[3] + "px;left:" + towerInRange[4] + "px;}");
+                            keyframes.insertRule("100%{transform:rotate(0deg);top:" + towerInRange[1] + "px;left:" + towerInRange[2] + "px; }");
+                            //console.log("100%{transform:rotate(0deg);top:" + cY + "px;left:" + cX + "px; }")
+                            // assign the animation to our element (which will cause the animation to run)
+                            document.getElementById("bullet" + bulletToUse).style.webkitAnimationName = anim;
+                            setTimeout(function(){
+                                    
+                                arrowToDelete = document.getElementById("bullet" + bulletToUse)
+                                arrowToDelete.style.webkitAnimationName = "none"
+                                arrowToDelete.style.top = "-100px;"
+                                arrowToDelete.style.left = "-100px;"
+                                    
+                            }, 500);
+                        }
+                        return bulletToUse;
+                        }
+                        if (towerType == "bomb") {
+                        //console.log(i + " true sniper ", bulletToUse)
+                        bombToUse++
+                        if (bombToUse == 21) {
+                            bombToUse = 1
+                        }
+                        document.getElementById("bomb" + bombToUse).style.webkitAnimationName = "none";
+                        document.getElementById("bomb" + bombToUse).style.top = "-100px"
+                        document.getElementById("bomb" + bombToUse).style.left = "-100px"
+            
+                        //console.log(clickX, clickY) 1000
+                        
+                        // call the change method, which will update the keyframe animation
+                        setTimeout(function(){changeBomb("shoot", x, y, bombToUse);}, 0);
+                        
+                        function changeBomb(anim, cX, cY, bombToUse) {
+                            // find our -webkit-keyframe rule
+                            var keyframes = findKeyframesRule(anim);
+                            
+                            //console.log(keyframes)
+                            
+                            // remove the existing 0% and 100% rules
+                            keyframes.deleteRule("0%");
+                            keyframes.deleteRule("100%");
+                            //console.log(towerInRange)
+                            // create new 0% and 100% rules with random numbers randomFromTo(-360,360)
+                            keyframes.insertRule("0%{transform:rotate(0deg);top:" + towerInRange[3] + "px;left:" + towerInRange[4] + "px;}");
+                            keyframes.insertRule("100%{transform:rotate(0deg);top:" + towerInRange[1] + "px;left:" + towerInRange[2] + "px; }");
+                            //console.log("100%{transform:rotate(0deg);top:" + cY + "px;left:" + cX + "px; }")
+                            // assign the animation to our element (which will cause the animation to run)
+                            document.getElementById("bomb" + bombToUse).style.webkitAnimationName = anim;
+                            setTimeout(function(){
+                                    
+                                arrowToDelete = document.getElementById("bomb" + bombToUse)
+                                arrowToDelete.style.webkitAnimationName = "none"
+                                arrowToDelete.style.top = "-100px;"
+                                arrowToDelete.style.left = "-100px;"
+                                explosion++
+                                //document.getElementById("towerPlacing").innerHTML+="<div id = 'explosion" + explosion + "'; class = 'explosion'; style='z-index:40;width:200px;height:200px;top:" + (parseInt(towerInRange[1]) - 50) + "px;left:" + (parseInt(towerInRange[2]) - 50) + "px;position:fixed;'><img src = 'explosion.png' height=200px; width=200px;></div>"
+                                var elemDiv = document.createElement('img');
+                                elemDiv.style.cssText = 'position:fixed;width:200px;height:200px;z-index:40;src:"explosion.png";background-image:"explosion.png";top:' + (towerInRange[1] - 75) + 'px;left:' + (towerInRange[2] - 75) + 'px;';
+                                elemDiv.id = "explosion" + explosion
+                                elemDiv.class = "explosion"
+                                elemDiv.src = "explosion.png"
+                                elemDivId = "explosion" + explosion
+                                i = 0
+                                document.body.appendChild(elemDiv);
+                                
+                                while (i < arrayOfEnemies.length) {
+                                    var bombSplash = doElsCollide(elemDivId, arrayOfEnemies[i], 0)
+                                    if (bombSplash[0]) {
+                                        hurtEnemy(arrayOfEnemies[i], damage/2, i)
+                                        console.log("Splash damage on enemy given")
+                                    }
+                                    i++
+                                }
+                                
+                                setTimeout(function(){
+                                    bombsDeleted++
+                                    elem = document.getElementById("explosion" + bombsDeleted)
+                                    elem.parentNode.removeChild(elem)
+                                }, 1000);    
+                            }, 500);
+                        }
+                        return bombToUse;
+                    }
+                    }
+                i++
+            }
+        }
+                function doElsCollide(el1, el2, range) {
+                    //console.log("Checking For Collision")
+                    el1 = document.getElementById(el1)
+                    el2 = document.getElementById(el2)
+                    
+                    el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
+                    el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
+                    el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
+                    el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
+                    
+                    collide = !((el1.offsetBottom + range < el2.offsetTop) ||
+                     (el1.offsetTop - range > el2.offsetBottom) ||
+                     (el1.offsetRight + range < el2.offsetLeft) ||
+                     (el1.offsetLeft - range > el2.offsetRight))
+                    
+                    enemyTop = el2.offsetTop 
+                    enemyLeft = el2.offsetLeft
+                    towerTop = el1.offsetTop
+                    towerLeft = el1.offsetLeft
+                    
+                    arrayToReturn2 = [collide, enemyTop, enemyLeft, towerTop, towerLeft]
+                    //console.log(arrayToReturn2)
+                    //console.log(el1 + " " + el1.offsetTop + " " + el1.offsetHeight + " " + el1.offsetLeft + " " + el1.offsetWidth + " " + el1.offsetBottom + " " + el1.offsetRight)
+                    //console.log(el2 + " " + el2.offsetTop + " " + el2.offsetHeight + " " + el2.offsetLeft + " " + el2.offsetWidth + " " + el2.offsetBottom + " " + el2.offsetRight)
+                    //console.log(" " + range + "")
+                    return arrayToReturn2
+                    /*
+                    el1StyleTop = parseInt(el1.style.top.substring(0, el1.style.top.length - 2)) - range;
+                    el2StyleTop = el2.style.top.substring(0, el2.style.top.length - 2);
+
+                    el1StyleLeft = parseInt(el1.style.left.substring(0, el1.style.left.length - 2)) - range;
+                    el2StyleLeft = el2.style.left.substring(0, el2.style.left.length - 2);
+                    
+                    el1StyleHeight = el1.style.height.substring(0, el1.style.height.length - 2);
+                    el2StyleHeight = el2.style.height.substring(0, el2.style.height.length - 2);
+                    
+                    el1StyleWidth = el1.style.width.substring(0, el1.style.width.length - 2);
+                    el2StyleWidth = el2.style.width.substring(0, el2.style.width.length - 2);
+                    console.log(el1StyleTop)
+                    
+                    el1StyleBottom = parseInt(el1StyleTop) + parseInt(el1StyleHeight) + range * 2;
+                    el1StyleRight = parseInt(el1StyleLeft) + parseInt(el1StyleWidth) + range * 2;
+                    el2StyleBottom = parseInt(el2StyleTop)+ parseInt(el2StyleHeight);
+                    el2StyleRight = parseInt(el2StyleLeft) + parseInt(el2StyleWidth);
+                    console.log(el1 + " " + el1StyleTop + " " + el1StyleHeight + " " + el1StyleLeft + " " + el1StyleWidth + " " + el1StyleBottom + " " + el1StyleRight)
+                    console.log(el2 + " " + el2StyleTop + " " + el2StyleHeight + " " + el2StyleLeft + " " + el2StyleWidth + " " + el2StyleBottom + " " + el2StyleRight)
+                    return !((el1StyleBottom < el2StyleTop) ||
+                             (el1StyleTop > el2StyleBottom) ||
+                             (el1StyleRight < el2StyleLeft) ||
+                             (el1StyleLeft > el2StyleRight))
+                    */
+                    
+                };
+                function hurtEnemy(enemy, damage, i) {
+                    //console.log("Damaging Enemy " + enemy + " at damage " + damage + " and " + i)
+                    arrayOfEnemiesHealth[i] = arrayOfEnemiesHealth[i] - damage
+                    
+                    if (arrayOfEnemiesHealth[i] <= 0) {
+                        var enemyToDeSpawn = document.getElementById(arrayOfEnemies[i])
+                        enemyToDeSpawn.style.webkitAnimationName = "none"
+                        arrayOfEnemiesHealth[i] = arrayOfOriginalEnemiesHealth[i]
+                    }
+                    
+                    return arrayOfEnemiesHealth
+                }
+                
+                function archerTowerLvl1(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            archerTowerLvl1(tower, x, y, damage, towerType)
+                        }, 2500)
+                    } else {
+                        archerTowerLvl2(tower, x, y, 30, towerType)
+                        return i
+                    }
+                }
+                function archerTowerLvl2(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            archerTowerLvl2(tower, x, y, damage, towerType)
+                        }, 2500)
+                    } else {
+                        archerTowerLvl3(tower, x, y, 35, towerType)
+                    }
+                }
+                function archerTowerLvl3(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            archerTowerLvl3(tower, x, y, damage, towerType)
+                        }, 2500)
+                    } else {
+                        archerTowerLvl4(tower, x, y, 50, towerType)
+                    }
+                }function archerTowerLvl4(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            archerTowerLvl4(tower, x, y, damage, towerType)
+                        }, 2500)
+                    } else {
+                        archerTowerLvl5(tower, x, y, 75, towerType)
+                    }
+                }function archerTowerLvl5(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            archerTowerLvl5(tower, x, y, damage, towerType)
+                        }, 2500)
+                    } else {
+                        //archerTowerLvl2(tower, x, y, 35)
+                    }
+                }
+                //--------------------------------------------------------------------------
+                function wizardTowerLvl1(tower, x, y, damage, towerType) {
+                    range = 150
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 25, towerType)
+                            wizardTowerLvl1(tower, x, y, damage, towerType)
+                        }, 4000)
+                    } else {
+                        wizardTowerLvl2(tower, x, y, 30, towerType)
+                        return i
+                    }
+                }
+                function wizardTowerLvl2(tower, x, y, damage, towerType) {
+                    range = 150
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 35, towerType)
+                            wizardTowerLvl2(tower, x, y, damage, towerType)
+                        }, 4000)
+                    } else {
+                        wizardTowerLvl3(tower, x, y, 40, towerType)
+                    }
+                }
+                function wizardTowerLvl3(tower, x, y, damage, towerType) {
+                    range = 150
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 45, towerType)
+                            wizardTowerLvl3(tower, x, y, damage, towerType)
+                        }, 4000)
+                    } else {
+                        wizardTowerLvl4(tower, x, y, 65, towerType)
+                    }
+                }function wizardTowerLvl4(tower, x, y, damage, towerType) {
+                    range = 150
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 55, towerType)
+                            wizardTowerLvl4(tower, x, y, damage, towerType)
+                        }, 4000)
+                    } else {
+                        wizardTowerLvl5(tower, x, y, 100, towerType)
+                    }
+                }function wizardTowerLvl5(tower, x, y, damage, towerType) {
+                    range = 150
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 75, towerType)
+                            wizardTowerLvl5(tower, x, y, damage, towerType)
+                        }, 4000)
+                    } else {
+                        //archerTowerLvl2(tower, x, y, 35)
+                    }
+                }
+                //--------------------------------------------------------------------------
+                function sniperTowerLvl1(tower, x, y, damage, towerType) {
+                    range = 600
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 5, towerType)
+                            sniperTowerLvl1(tower, x, y, damage, towerType)
+                        }, 7000)
+                    } else {
+                        sniperTowerLvl2(tower, x, y, 100, towerType)
+                        return i
+                    }
+                }
+                function sniperTowerLvl2(tower, x, y, damage, towerType) {
+                    range = 600
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 10, towerType)
+                            sniperTowerLvl2(tower, x, y, damage, towerType)
+                        }, 7000)
+                    } else {
+                        sniperTowerLvl3(tower, x, y, 125, towerType)
+                    }
+                }
+                function sniperTowerLvl3(tower, x, y, damage, towerType) {
+                    range = 600
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 15, towerType)
+                            sniperLvl3(tower, x, y, damage, towerType)
+                        }, 7000)
+                    } else {
+                        sniperTowerLvl4(tower, x, y, 150, towerType)
+                    }
+                }function sniperTowerLvl4(tower, x, y, damage, towerType) {
+                    range = 600
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 20, towerType)
+                            sniperTowerLvl4(tower, x, y, damage, towerType)
+                        }, 7000)
+                    } else {
+                        sniperTowerLvl5(tower, x, y, 200, towerType)
+                    }
+                }function sniperTowerLvl5(tower, x, y, damage, towerType) {
+                    range = 600
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 25, towerType)
+                            sniperTowerLvl5(tower, x, y, damage, towerType)
+                        }, 7000)
+                    } else {
+                        //archerTowerLvl2(tower, x, y, 35)
+                    }
+                }
+                //--------------------------------------------------------------------------
+                function bombTowerLvl1(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            bombTowerLvl1(tower, x, y, damage, towerType)
+                        }, 10000)
+                    } else {
+                        bombTowerLvl2(tower, x, y, 75, towerType)
+                        return i
+                    }
+                }
+                function bombTowerLvl2(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            bombTowerLvl2(tower, x, y, damage, towerType)
+                        }, 10000)
+                    } else {
+                        bombTowerLvl3(tower, x, y, 100, towerType)
+                    }
+                }
+                function bombTowerLvl3(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            bombTowerLvl3(tower, x, y, damage, towerType)
+                        }, 10000)
+                    } else {
+                        bombTowerLvl4(tower, x, y, 125, towerType)
+                    }
+                }function bombTowerLvl4(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            bombTowerLvl4(tower, x, y, damage, towerType)
+                        }, 10000)
+                    } else {
+                        bombTowerLvl5(tower, x, y, 200, towerType)
+                    }
+                }function bombTowerLvl5(tower, x, y, damage, towerType) {
+                    range = 200
+                    i = 0
+                    while (i < arrayOfTowers.length) {
+                        if (arrayOfTowers[i] == tower) {
+                            checkForUpgradedTower = i
+                        }
+                        i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
+                        setTimeout(function(){
+                            checkForHit(tower, x, y, range, damage, 0, towerType)
+                            bombTowerLvl5(tower, x, y, damage, towerType)
+                        }, 10000)
+                    } else {
+                        //archerTowerLvl2(tower, x, y, 35)
+                    }
+                }
+	</script>
+</head>
+<body>
+    <div id="towerPlacing" onclick = "buildTower()">
+        <div id="selectTower" style="width:100px;height:100px;top:-100px;left:-100px;">
+            <div id="archerTower" onclick = "constructTower('archer')"><img src="archerTower.png" height="25px;" width="25px;" /></div>
+            <div id="bombTower" onclick = "constructTower('bomb')"><img src="bombTower.png" height="25px;" width="25px;" /></div>
+            <strong>Select a tower to build</strong>
+            <div id="sniperTower" onclick = "constructTower('sniper')"><img src="sniperTower.png" height="25px;" width="25px;" /></div>
+            <div id="magicianTower" onclick = "constructTower('magician')"><img src="magicianTower.png" height="25px;" width="25px;" /></div>
+        </div>
+        <div id="upgradeTower" style="width:100px;height:100px;top:-100px;left:-100px;">
+            <div id="sellTower" onclick = "sell()"><img src="sellIcon.jpeg" height="25px;" width="25px;" /></div>
+            <div id="upgrade" onclick = "upgrade()"><img src="upgradeIcon.jpeg" height="25px;" width="25px;" /></div>
+            <strong>Sell or Upgrade?</strong>
+        </div>
+        <div id="aroundBlock1" onclick = "dontBuildTower()"><div id="block1"></div></div>
+        <div id="aroundBlock2" onclick = "dontBuildTower()"><div id="block2"></div></div>
+        <div id="aroundBlock3" onclick = "dontBuildTower()"><div id="block3"></div></div>
+        <div id="aroundBlock4" onclick = "dontBuildTower()"><div id="block4"></div></div>
+        <div id="aroundBlock5" onclick = "dontBuildTower()"><div id="block5"></div></div>
+        <div id="aroundBlock6" onclick = "dontBuildTower()"><div id="block6"></div></div>
+        <div id="aroundBlock7" onclick = "dontBuildTower()"><div id="block7"></div></div>
+        <div id="enemy1d1" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d2" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d3" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d4" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d5" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d6" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d7" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d8" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d9" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy1d10" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d1" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d2" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d3" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d4" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d5" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d6" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d7" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d8" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d9" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="enemy2d10" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
+        <div id="arrow1" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow2" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow3" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow4" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow5" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow6" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow7" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow8" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow9" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow10" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow11" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow12" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow13" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow14" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow15" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow16" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow17" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow18" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow19" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="arrow20" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
+        <div id="magicBall1" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall2" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall3" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall4" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall5" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall6" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall7" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall8" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall9" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall10" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall11" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall12" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall13" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall14" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall15" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall16" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall17" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall18" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall19" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="magicBall20" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
+        <div id="bullet1" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet2" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet3" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet4" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet5" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet6" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet7" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet8" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet9" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet10" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet11" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet12" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet13" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet14" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet15" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet16" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet17" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet18" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet19" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bullet20" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
+        <div id="bomb1" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb2" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb3" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb4" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb5" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb6" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb7" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb8" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb9" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb10" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb11" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb12" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb13" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb14" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb15" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb16" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb17" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb18" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb19" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        <div id="bomb20" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+    </div>
+    <div id = "playButton" onclick = "play()">
+        <br>
+        <br>
+        <strong>PLAY</strong>
+    </div>
+    <div id = "moneyAndScoreDisplay">
+        <br>
+        <p id = "moneyDisplay">Money: 1000$</p>
+        <br>
+        <p id = "scoreDisplay">Score: 0</p>
+        <br>
+        <p id = "livesDisplay">Lives: 20</p>
+    </div>
+    <div id = "towerInfoDisplay">
+        <strong>Tower Info:</strong>
+    </div>
+</body>
+</html>
