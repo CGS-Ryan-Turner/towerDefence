@@ -331,6 +331,7 @@
       }
 	</style>
 	<script>
+	    //Javascript --------------------------------------------------------------------------------------------------------
 	    //-webkit-animation:moveToPlace 2s infinite;
 	    var arrayToReturn = []
 	    var allowedToBuildTower = true
@@ -361,7 +362,7 @@
 	        arrayOfTowers.push(towerName)
 	        arrayOfTowers.push("1")
 	        document.getElementById("towerPlacing").innerHTML+="<div id = '" + place + "'; class = '" + towerName + "'; style='width:100px;height:100px;top:" + arrayToReturn[1] + "px;left:" + arrayToReturn[0] + "px;position:fixed;'><img id = '" + place + "" + towerName + "'; src=" + towerName + "TowerLvl1.jpg height=100px; width=100px; /></div>"
-	        towerInfo = ["<strong>Tower Info:</strong> <br>  Archer lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 30 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  30 -> 40 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 25% -> 30%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  75 -> 100 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 5% -> 10%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  50 -> 75 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$"]
+	        towerInfo = ["<strong>Tower Info:</strong> <br>  Archer lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 30 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  30 -> 40 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 25% -> 30%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  75 -> 100 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 5% -> 10%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 35 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Archer lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  30 -> 35 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  40 -> 65 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 30% -> 35%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  100 -> 125 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 10% -> 15%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 35 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$",]
 	        towerInfoBlock = document.getElementById("towerInfoDisplay")
 	        if (towerName == "archer") {
 	            towerInfoBlock.innerHTML = towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
@@ -473,6 +474,47 @@
                         var selectTower = document.getElementById("selectTower");
                         selectTower.style.top = "-100px"
                         selectTower.style.left = "-100px"
+                        if (arrayOfTowers[i + 1] == "archer") {
+                            if (arrayOfTowers[i + 2] == "1") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
+                            }
+                            if (arrayOfTowers[i + 2] == "2") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[24] + "" + towerInfo[25] + "" + towerInfo[26] + "" + towerInfo[27] + "" + towerInfo[28] + "" + towerInfo[29]
+                            }
+                        }
+                        if (arrayOfTowers[i + 1] == "magician") {
+                            if (arrayOfTowers[i + 2] == "1") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[6] + "" + towerInfo[7] + "" + towerInfo[8] + "" + towerInfo[9] + "" + towerInfo[10] + "" + towerInfo[11]
+                            }
+                            if (arrayOfTowers[i + 2] == "2") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[30] + "" + towerInfo[31] + "" + towerInfo[32] + "" + towerInfo[33] + "" + towerInfo[34] + "" + towerInfo[35]
+                            }
+                        }
+                        if (arrayOfTowers[i + 1] == "sniper") {
+                            if (arrayOfTowers[i + 2] == "1") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[12] + "" + towerInfo[13] + "" + towerInfo[14] + "" + towerInfo[15] + "" + towerInfo[16] + "" + towerInfo[17]
+                            }
+                            if (arrayOfTowers[i + 2] == "2") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[36] + "" + towerInfo[37] + "" + towerInfo[38] + "" + towerInfo[39] + "" + towerInfo[40] + "" + towerInfo[41]
+                            }
+                        }
+                        if (arrayOfTowers[i + 1] == "bomb") {
+                            if (arrayOfTowers[i + 2] == "1") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[18] + "" + towerInfo[19] + "" + towerInfo[20] + "" + towerInfo[21] + "" + towerInfo[22] + "" + towerInfo[23]
+                            }
+                            if (arrayOfTowers[i + 2] == "2") {
+                                towerInfoBlock = document.getElementById("towerInfoDisplay")
+                                towerInfoBlock.innerHTML = towerInfo[42] + "" + towerInfo[43] + "" + towerInfo[44] + "" + towerInfo[45] + "" + towerInfo[46] + "" + towerInfo[47]
+                            }
+                        }
+                        
                     }
                     i = i + 3
                 }
