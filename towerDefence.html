@@ -329,6 +329,47 @@
       .upgradeText {
         color: green;  
       }
+      .range {
+        /*
+        background-image:
+        -webkit-gradient(
+              background-color: rgba(255,255,255,0.2);,
+              background-color: rgba(255,255,255,0.5);
+            );
+        background-color: rgba(255,255,255,0.2); 
+        
+        background-image: radial-gradient(white,#f06d06);
+        */
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7f9f9+0,dce5e8+100&0.2+0,0.5+100 */
+        background: -moz-radial-gradient(center, ellipse cover, rgba(247,249,249,0.1) 0%, rgba(220,229,232,0.5) 100%); /* FF3.6+ */
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(247,249,249,0.1)), color-stop(100%,rgba(220,229,232,0.5))); /* Chrome,Safari4+ */
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(247,249,249,0.1) 0%,rgba(220,229,232,0.5) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-radial-gradient(center, ellipse cover, rgba(247,249,249,0.1) 0%,rgba(220,229,232,0.5) 100%); /* Opera 12+ */
+        background: -ms-radial-gradient(center, ellipse cover, rgba(247,249,249,0.1) 0%,rgba(220,229,232,0.5) 100%); /* IE10+ */
+        background: radial-gradient(ellipse at center, rgba(247,249,249,0.1) 0%,rgba(220,229,232,0.5) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33f7f9f9', endColorstr='#80dce5e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        position: fixed;
+        z-index: 101;
+        border: 1px solid rgba(255,255,255,0.6);
+        left: -10000px;
+        top: -10000px;
+      }
+      #archerRange {
+        width: 500px;
+        height: 500px;
+      }
+      #wizardRange {
+        width: 400px;
+        height: 400px;
+      }
+      #sniperRange {
+        width: 1300px;
+        height: 1300px;
+      }
+      #bombRange {
+        width: 500px;
+        height: 500px;
+      }
 	</style>
 	<script>
 	    //Javascript --------------------------------------------------------------------------------------------------------
@@ -477,6 +518,18 @@
                         selectTower.style.top = "-100px"
                         selectTower.style.left = "-100px"
                         if (arrayOfTowers[i + 1] == "archer") {
+                            var rangeToChange = document.getElementById("archerRange")
+                            rangeToChange.style.top = "" + (y - 200) + "px"
+                            rangeToChange.style.left = "" + (x - 200) + "px"
+                            var rangeToChange = document.getElementById("wizardRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-1000px"
+                            var rangeToChange = document.getElementById("sniperRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("bombRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
                             if (arrayOfTowers[i + 2] == "1") {
                                 towerInfoBlock = document.getElementById("towerInfoDisplay")
                                 towerInfoBlock.innerHTML = towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
@@ -500,6 +553,18 @@
                             
                         }
                         if (arrayOfTowers[i + 1] == "magician") {
+                            var rangeToChange = document.getElementById("wizardRange")
+                            rangeToChange.style.top = "" + (y - 150) + "px"
+                            rangeToChange.style.left = "" + (x - 150) + "px"
+                            var rangeToChange = document.getElementById("archerRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("sniperRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("bombRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
                             if (arrayOfTowers[i + 2] == "1") {
                                 towerInfoBlock = document.getElementById("towerInfoDisplay")
                                 towerInfoBlock.innerHTML = towerInfo[6] + "" + towerInfo[7] + "" + towerInfo[8] + "" + towerInfo[9] + "" + towerInfo[10] + "" + towerInfo[11]
@@ -523,6 +588,18 @@
                             
                         }
                         if (arrayOfTowers[i + 1] == "sniper") {
+                            var rangeToChange = document.getElementById("sniperRange")
+                            rangeToChange.style.top = "" + (y - 600) + "px"
+                            rangeToChange.style.left = "" + (x - 600) + "px"
+                            var rangeToChange = document.getElementById("wizardRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("archerRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("bombRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
                             if (arrayOfTowers[i + 2] == "1") {
                                 towerInfoBlock = document.getElementById("towerInfoDisplay")
                                 towerInfoBlock.innerHTML = towerInfo[12] + "" + towerInfo[13] + "" + towerInfo[14] + "" + towerInfo[15] + "" + towerInfo[16] + "" + towerInfo[17]
@@ -545,6 +622,18 @@
                             }
                         }
                         if (arrayOfTowers[i + 1] == "bomb") {
+                            var rangeToChange = document.getElementById("bombRange")
+                            rangeToChange.style.top = "" + (y - 200) + "px"
+                            rangeToChange.style.left = "" + (x - 200) + "px"
+                            var rangeToChange = document.getElementById("wizardRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("sniperRange")
+                            rangeToChange.style.top = "-10000px"
+                            rangeToChange.style.left = "-10000px"
+                            var rangeToChange = document.getElementById("archerRange")
+                            rangeToChange.style.top = "-1000px"
+                            rangeToChange.style.left = "-10000px"
                             if (arrayOfTowers[i + 2] == "1") {
                                 towerInfoBlock = document.getElementById("towerInfoDisplay")
                                 towerInfoBlock.innerHTML = towerInfo[18] + "" + towerInfo[19] + "" + towerInfo[20] + "" + towerInfo[21] + "" + towerInfo[22] + "" + towerInfo[23]
@@ -584,6 +673,19 @@
                     var selectTower = document.getElementById("upgradeTower");
                     selectTower.style.top = "-100px"
                     selectTower.style.left = "-100px"
+                    
+                    var rangeToChange = document.getElementById("archerRange")
+                    rangeToChange.style.top = "-10000px"
+                    rangeToChange.style.left = "-10000px"
+                    var rangeToChange = document.getElementById("wizardRange")
+                    rangeToChange.style.top = "-10000px"
+                    rangeToChange.style.left = "-1000px"
+                    var rangeToChange = document.getElementById("sniperRange")
+                    rangeToChange.style.top = "-10000px"
+                    rangeToChange.style.left = "-10000px"
+                    var rangeToChange = document.getElementById("bombRange")
+                    rangeToChange.style.top = "-10000px"
+                    rangeToChange.style.left = "-10000px"
                 }
                 /*
                 var keyframes = findKeyframesRule("moveToPlace");
@@ -1434,7 +1536,10 @@
             <div id="upgrade" onclick = "upgrade()"><img src="upgradeIcon.jpeg" height="25px;" width="25px;" /></div>
             <strong>Sell or Upgrade?</strong>
         </div>
-        
+        <div id="archerRange" class="range"></div>
+        <div id="wizardRange" class="range"></div>
+        <div id="sniperRange" class="range"></div>
+        <div id="bombRange" class="range"></div>
     </div>
     <div id = "playButton" onclick = "play()">
         <br>
