@@ -350,6 +350,8 @@
 	    var arrayOfEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
 	    var arrayOfOriginalEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
 	    var lvl1 = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
+	    var y = "";
+	    
 	    function dontBuildTower() {
 	        alert("You cannot build a tower on roads!")
 	        allowedToBuildTower = false
@@ -1432,113 +1434,7 @@
             <div id="upgrade" onclick = "upgrade()"><img src="upgradeIcon.jpeg" height="25px;" width="25px;" /></div>
             <strong>Sell or Upgrade?</strong>
         </div>
-        <div id="aroundBlock1" onclick = "dontBuildTower()"><div id="block1"></div></div>
-        <div id="aroundBlock2" onclick = "dontBuildTower()"><div id="block2"></div></div>
-        <div id="aroundBlock3" onclick = "dontBuildTower()"><div id="block3"></div></div>
-        <div id="aroundBlock4" onclick = "dontBuildTower()"><div id="block4"></div></div>
-        <div id="aroundBlock5" onclick = "dontBuildTower()"><div id="block5"></div></div>
-        <div id="aroundBlock6" onclick = "dontBuildTower()"><div id="block6"></div></div>
-        <div id="aroundBlock7" onclick = "dontBuildTower()"><div id="block7"></div></div>
-        <div id="enemy1d1" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d2" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d3" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d4" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d5" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d6" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d7" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d8" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d9" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy1d10" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy1.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d1" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d2" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d3" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d4" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d5" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d6" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d7" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d8" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d9" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="enemy2d10" class="enemy" onclick = "dontBuildTower()" style="position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;"><img src="enemy2.jpeg" height="50px;" width="50px;" /></div>
-        <div id="arrow1" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow2" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow3" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow4" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow5" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow6" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow7" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow8" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow9" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow10" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow11" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow12" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow13" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow14" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow15" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow16" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow17" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow18" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow19" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="arrow20" class="arrow"><img src="arrow.jpeg" height="25px;" width="25px;" /></div>
-        <div id="magicBall1" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall2" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall3" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall4" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall5" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall6" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall7" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall8" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall9" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall10" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall11" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall12" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall13" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall14" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall15" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall16" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall17" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall18" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall19" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="magicBall20" class="magic"><img src="magicBall.png" height="25px;" width="25px;" /></div>
-        <div id="bullet1" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet2" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet3" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet4" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet5" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet6" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet7" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet8" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet9" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet10" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet11" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet12" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet13" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet14" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet15" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet16" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet17" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet18" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet19" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bullet20" class="bullet"><img src="bullet.png" height="25px;" width="25px;" /></div>
-        <div id="bomb1" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb2" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb3" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb4" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb5" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb6" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb7" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb8" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb9" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb10" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb11" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb12" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb13" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb14" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb15" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb16" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb17" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb18" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb19" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
-        <div id="bomb20" class="bomb"><img src="bomb.png" height="25px;" width="25px;" /></div>
+        
     </div>
     <div id = "playButton" onclick = "play()">
         <br>
@@ -1556,5 +1452,32 @@
     <div id = "towerInfoDisplay">
         <strong>Tower Info:</strong>
     </div>
+    <script>
+        //Thanks to Thomas Krnc for this peice of code.
+	    y = document.getElementById("towerPlacing").innerHTML
+    	for (var i = 1; i <=7; i++) {
+    		y +=  "<div id=\"aroundBlock" + i + "\" onclick = \"dontBuildTower()\"><div id=\"block" + i + "\"></div></div>"
+    	}
+    	for (var x = 1; x <= 2; x++) {
+    		for (var i = 1; i <= 10; i++) {
+    
+    			y += "<div id=\"enemy" + x + "d" + i + "\" class=\"enemy\" onclick=\"dontBuildTower()\" style=\"position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;\"><img src=\"enemy" + x + ".jpeg\" height=\"50px;\" width=\"50px;\" /></div>";
+    		}
+    	} 
+    	for (var i = 1; i <= 20; i++) {
+    		y += "<div id=\"arrow" + i + "\" class=\"arrow\"><img src=\"arrow.jpeg\" height=\"25px;\" width=\"25px;\" /></div>"
+    	}
+    	for (var i = 1; i <= 20; i++) {
+    		y += "<div id=\"magicBall" + i + "\" class=\"magic\"><img src=\"magicBall.png\" height=\"25px;\" width=\"25px;\"/></div>"
+    	}
+    	for (var i = 1; i <= 20; i++) {
+    		y += "<div id=\"bullet" + i + "\" class=\"bullet\"><img src=\"bullet.png\" height=\"25px;\" width=\"25px;\"/></div>"
+    	}
+    	for (var i = 1; i <= 20; i++) {
+    		y += "<div id=\"bomb" + i + "\" class=\"bomb\"><img src=\"bomb.png\" height=\"25px;\" width=\"25px;\"/></div>"
+    	}
+        
+        document.getElementById("towerPlacing").innerHTML = y
+	    </script>
 </body>
 </html>
