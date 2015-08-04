@@ -182,7 +182,7 @@
 	      background-color: rgba(0,0,255,0.2);
 	      top: 1px;
 	      left: 1px;
-	      z-index: 50;
+	      z-index: 600;
 	      text-align: center;
 	      color: red;
 	      font-size: 15px;
@@ -194,6 +194,7 @@
 	      top: 0px;
 	      left: 0px;
 	      background-color: yellow;
+	      z-index: 600;
 	  }
 	  #upgrade {
 	      position: relative;
@@ -202,6 +203,7 @@
 	      top: -25px;
 	      left: 75px;
 	      background-color: yellow;
+	      z-index: 600;
 	  }
 	  #playButton {
 	      position: fixed;
@@ -404,26 +406,41 @@
 	        arrayOfTowers.push(place)
 	        arrayOfTowers.push(towerName)
 	        arrayOfTowers.push("1")
-	        document.getElementById("towerPlacing").innerHTML+="<div id = '" + place + "'; class = '" + towerName + "'; style='width:100px;height:100px;top:" + arrayToReturn[1] + "px;left:" + arrayToReturn[0] + "px;position:fixed;'><img id = '" + place + "" + towerName + "'; src=" + towerName + "TowerLvl1.jpg height=100px; width=100px; /></div>"
+	        var elemDiv = document.createElement('img');
+	        var towerPlacingDiv = document.getElementById("towerPlacing")
+            elemDiv.style.cssText = 'position:fixed;top:' + arrayToReturn[1] +  'px;left:' + arrayToReturn[0] + 'px;width:100px;height:100px;'
+            elemDiv.id = place
+            elemDiv.class = towerName
+            if (towerName == "archer") {
+                elemDiv.src = "archerTowerLvl1.jpg"
+            } if (towerName == "magician") {
+                elemDiv.src = "magicianTowerLvl1.jpg"
+            } if (towerName == "sniper") {
+                elemDiv.src = "sniperTowerLvl1.jpg"
+            } if (towerName == "bomb") {
+                elemDiv.src = "bombTowerLvl1.jpg"
+            }
+            towerPlacingDiv.appendChild(elemDiv);
+	        //document.getElementById("towerPlacing").innerHTML+="<div id = '" + place + "'; class = '" + towerName + "'; style='width:100px;height:100px;top:" + arrayToReturn[1] + "px;left:" + arrayToReturn[0] + "px;position:fixed;'><img id = '" + place + "" + towerName + "'; src=" + towerName + "TowerLvl1.jpg height=100px; width=100px; /></div>"
 	        towerInfo = ["<strong>Tower Info:</strong> <br>  Archer lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 30 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 30 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 25% -> 30%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  75 -> 100 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 5% -> 10%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 1 -> 2 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  25 -> 35 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Archer lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  30 -> 35 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  30 -> 40 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 30% -> 35%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  100 -> 125 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 10% -> 15%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 2 -> 3 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  35 -> 50 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Archer lvl 3 -> 4 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  35 -> 50 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 100$", "<strong>Tower Info:</strong> <br>  Wizard lvl 3 -> 4 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  40 -> 65 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 45% -> 55%<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Sniper lvl 3 -> 4 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  125 -> 150 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 15% -> 20%<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Bomb lvl 3 -> 4 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  50 -> 75 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 500$", "<strong>Tower Info:</strong> <br>  Archer lvl 4 -> 5 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  50 -> 75 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds -> 2.5<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> 200$", "<strong>Tower Info:</strong> <br>  Wizard lvl 4 -> 5 <hr>", "<strong>Range:</strong> <br> 1.5 tiles -> 1.5 tiles<hr>", "<strong>Damage:</strong><br>  65 -> 100 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 55% -> 75%<hr>", "<strong>Cost:</strong> <br> 400$", "<strong>Tower Info:</strong> <br>  Sniper lvl 4 -> 5 <hr>", "<strong>Range:</strong> <br> 6 tiles -> 6 tiles<hr>", "<strong>Damage:</strong><br>  150 -> 225 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 20% -> 25%<hr>", "<strong>Cost:</strong> <br> 1000$", "<strong>Tower Info:</strong> <br>  Bomb lvl 4 -> 5 <hr>", "<strong>Range:</strong> <br> 2 tiles -> 2 tiles<hr>", "<strong>Damage:</strong><br>  125 -> 175 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds -> 10<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> 1000$", "<strong>Tower Info:</strong> <br>  Archer lvl 5 <hr>", "<strong>Range:</strong> <br> 2 tiles<hr>", "<strong>Damage:</strong><br> 75 <hr>", "<strong>Rate of fire:</strong> <br> 2.5 seconds<hr>", "<strong>Special:</strong> <br> None<hr>", "<strong>Cost:</strong> <br> None", "<strong>Tower Info:</strong> <br>  Wizard lvl 5 <hr>", "<strong>Range:</strong> <br> 1.5 tiles<hr>", "<strong>Damage:</strong><br> 100 <hr>", "<strong>Rate of fire:</strong> <br> 4 seconds -> 4<hr>", "<strong>Special:</strong> <br> Chace of doube damage 75% <hr>", "<strong>Cost:</strong> <br> None", "<strong>Tower Info:</strong> <br>  Sniper lvl 5 <hr>", "<strong>Range:</strong> <br> 6 tiles<hr>", "<strong>Damage:</strong><br>  225 <hr>", "<strong>Rate of fire:</strong> <br> 7 seconds -> 7<hr>", "<strong>Special:</strong> <br> Chace of instant kill 25%<hr>", "<strong>Cost:</strong> <br> None", "<strong>Tower Info:</strong> <br>  Bomb lvl 5 <hr>", "<strong>Range:</strong> <br> 2 tiles<hr>", "<strong>Damage:</strong><br> 175 <hr>", "<strong>Rate of fire:</strong> <br> 10 seconds<hr>", "<strong>Special:</strong> <br> Explosions<hr>", "<strong>Cost:</strong> <br> None",]
 	        towerInfoBlock = document.getElementById("towerInfoDisplay")
 	        if (towerName == "archer") {
-	            towerInfoBlock.innerHTML = towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
+	            towerInfoBlock.innerHTML += towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
 	            damage = 25
 	            archerTowerLvl1(place, x, y, damage, "archer")
 	        }
 	        if (towerName == "magician") { 
-	            towerInfoBlock.innerHTML = towerInfo[6] + "" + towerInfo[7] + "" + towerInfo[8] + "" + towerInfo[9] + "" + towerInfo[10] + "" + towerInfo[11]
+	            towerInfoBlock.innerHTML += towerInfo[6] + "" + towerInfo[7] + "" + towerInfo[8] + "" + towerInfo[9] + "" + towerInfo[10] + "" + towerInfo[11]
 	            damage = 25
 	            wizardTowerLvl1(place, x, y, damage, "magician")
 	        }
 	        if (towerName == "sniper") {
-	            towerInfoBlock.innerHTML = towerInfo[12] + "" + towerInfo[13] + "" + towerInfo[14] + "" + towerInfo[15] + "" + towerInfo[16] + "" + towerInfo[17]
+	            towerInfoBlock.innerHTML += towerInfo[12] + "" + towerInfo[13] + "" + towerInfo[14] + "" + towerInfo[15] + "" + towerInfo[16] + "" + towerInfo[17]
 	            damage = 75
 	            wizardTowerLvl1(place, x, y, damage, "sniper")
 	        }
 	        if (towerName == "bomb") {
-	            towerInfoBlock.innerHTML = towerInfo[18] + "" + towerInfo[19] + "" + towerInfo[20] + "" + towerInfo[21] + "" + towerInfo[22] + "" + towerInfo[23]
+	            towerInfoBlock.innerHTML += towerInfo[18] + "" + towerInfo[19] + "" + towerInfo[20] + "" + towerInfo[21] + "" + towerInfo[22] + "" + towerInfo[23]
 	            damage = 50
 	            wizardTowerLvl1(place, x, y, damage, "bomb")
 	        }
