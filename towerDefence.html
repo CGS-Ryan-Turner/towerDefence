@@ -389,6 +389,7 @@
 	    var bombToUse = 0
 	    var explosion = 0
 	    var bombsDeleted = 0
+	    var constructedTower = 0
 	    var arrayOfEnemies = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
 	    var arrayOfEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
 	    var arrayOfOriginalEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
@@ -403,9 +404,11 @@
 	    function constructTower(towerName) {
 	        place = "" + x + "" + y
 	        //console.log("Attempting to construct " + towerName + " at " + place)
+	        constructedTower++
 	        arrayOfTowers.push(place)
 	        arrayOfTowers.push(towerName)
 	        arrayOfTowers.push("1")
+	        arrayOfTowers.push(constructedTower)
 	        var elemDiv = document.createElement('img');
 	        var towerPlacingDiv = document.getElementById("towerPlacing")
             elemDiv.style.cssText = 'position:fixed;top:' + arrayToReturn[1] +  'px;left:' + arrayToReturn[0] + 'px;width:100px;height:100px;'
@@ -427,22 +430,22 @@
 	        if (towerName == "archer") {
 	            towerInfoBlock.innerHTML += towerInfo[0] + "" + towerInfo[1] + "" + towerInfo[2] + "" + towerInfo[3] + "" + towerInfo[4] + "" + towerInfo[5]
 	            damage = 25
-	            archerTowerLvl1(place, x, y, damage, "archer")
+	            archerTowerLvl1(place, x, y, damage, "archer", constructedTower)
 	        }
 	        if (towerName == "magician") { 
 	            towerInfoBlock.innerHTML += towerInfo[6] + "" + towerInfo[7] + "" + towerInfo[8] + "" + towerInfo[9] + "" + towerInfo[10] + "" + towerInfo[11]
 	            damage = 25
-	            wizardTowerLvl1(place, x, y, damage, "magician")
+	            wizardTowerLvl1(place, x, y, damage, "magician", constructedTower)
 	        }
 	        if (towerName == "sniper") {
 	            towerInfoBlock.innerHTML += towerInfo[12] + "" + towerInfo[13] + "" + towerInfo[14] + "" + towerInfo[15] + "" + towerInfo[16] + "" + towerInfo[17]
 	            damage = 75
-	            wizardTowerLvl1(place, x, y, damage, "sniper")
+	            wizardTowerLvl1(place, x, y, damage, "sniper", constructedTower)
 	        }
 	        if (towerName == "bomb") {
 	            towerInfoBlock.innerHTML += towerInfo[18] + "" + towerInfo[19] + "" + towerInfo[20] + "" + towerInfo[21] + "" + towerInfo[22] + "" + towerInfo[23]
 	            damage = 50
-	            wizardTowerLvl1(place, x, y, damage, "bomb")
+	            wizardTowerLvl1(place, x, y, damage, "bomb", constructedTower)
 	        }
 	        return arrayOfTowers
 	    }
@@ -798,6 +801,7 @@
                    arrayOfTowers.splice(i, 1);
                    arrayOfTowers.splice(i, 1);
                    arrayOfTowers.splice(i, 1);
+                   arrayOfTowers.splice(i, 1);
                    //console.log(arrayOfTowers)
                 }
                 i = i + 3
@@ -826,7 +830,7 @@
                         alert("This is that tower's max level! Upgrade failed!")
                     }
                 }
-                i = i + 3
+                i = i + 4
             }
             if (allowedToUpgrade) {
                 console.log("!!!! " + levelToUpgrade + " " + towerTypeToUpgrade)
@@ -1174,7 +1178,7 @@
                     return arrayOfEnemiesHealth
                 }
                 
-                function archerTowerLvl1(tower, x, y, damage, towerType) {
+                function archerTowerLvl1(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1183,18 +1187,20 @@
                         }
                         i++
                     }
-                    
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            archerTowerLvl1(tower, x, y, damage, towerType)
+                            archerTowerLvl1(tower, x, y, damage, towerType, constructedTower)
                         }, 2500)
                     } else {
-                        archerTowerLvl2(tower, x, y, 30, towerType)
+                        archerTowerLvl2(tower, x, y, 30, towerType, constructedTower)
                         return i
                     }
                 }
-                function archerTowerLvl2(tower, x, y, damage, towerType) {
+                function archerTowerLvl2(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1202,17 +1208,20 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            archerTowerLvl2(tower, x, y, damage, towerType)
+                            archerTowerLvl2(tower, x, y, damage, towerType, constructedTower)
                         }, 2500)
                     } else {
-                        archerTowerLvl3(tower, x, y, 35, towerType)
+                        archerTowerLvl3(tower, x, y, 35, towerType, constructedTower)
                     }
                 }
-                function archerTowerLvl3(tower, x, y, damage, towerType) {
+                function archerTowerLvl3(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1220,16 +1229,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            archerTowerLvl3(tower, x, y, damage, towerType)
+                            archerTowerLvl3(tower, x, y, damage, towerType, constructedTower)
                         }, 2500)
                     } else {
-                        archerTowerLvl4(tower, x, y, 50, towerType)
+                        archerTowerLvl4(tower, x, y, 50, towerType, constructedTower)
                     }
-                }function archerTowerLvl4(tower, x, y, damage, towerType) {
+                }function archerTowerLvl4(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1237,16 +1249,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            archerTowerLvl4(tower, x, y, damage, towerType)
+                            archerTowerLvl4(tower, x, y, damage, towerType, constructedTower)
                         }, 2500)
                     } else {
-                        archerTowerLvl5(tower, x, y, 75, towerType)
+                        archerTowerLvl5(tower, x, y, 75, towerType, constructedTower)
                     }
-                }function archerTowerLvl5(tower, x, y, damage, towerType) {
+                }function archerTowerLvl5(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1255,17 +1270,20 @@
                         }
                         i++
                     }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            archerTowerLvl5(tower, x, y, damage, towerType)
+                            archerTowerLvl5(tower, x, y, damage, towerType, constructedTower)
                         }, 2500)
                     } else {
                         //archerTowerLvl2(tower, x, y, 35)
                     }
                 }
                 //--------------------------------------------------------------------------
-                function wizardTowerLvl1(tower, x, y, damage, towerType) {
+                function wizardTowerLvl1(tower, x, y, damage, towerType, constructedTower) {
                     range = 150
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1274,18 +1292,20 @@
                         }
                         i++
                     }
-                    
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 25, towerType)
-                            wizardTowerLvl1(tower, x, y, damage, towerType)
+                            wizardTowerLvl1(tower, x, y, damage, towerType, constructedTower)
                         }, 4000)
                     } else {
-                        wizardTowerLvl2(tower, x, y, 30, towerType)
+                        wizardTowerLvl2(tower, x, y, 30, towerType, constructedTower)
                         return i
                     }
                 }
-                function wizardTowerLvl2(tower, x, y, damage, towerType) {
+                function wizardTowerLvl2(tower, x, y, damage, towerType, constructedTower) {
                     range = 150
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1293,17 +1313,20 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 35, towerType)
-                            wizardTowerLvl2(tower, x, y, damage, towerType)
+                            wizardTowerLvl2(tower, x, y, damage, towerType, constructedTower)
                         }, 4000)
                     } else {
-                        wizardTowerLvl3(tower, x, y, 40, towerType)
+                        wizardTowerLvl3(tower, x, y, 40, towerType, constructedTower)
                     }
                 }
-                function wizardTowerLvl3(tower, x, y, damage, towerType) {
+                function wizardTowerLvl3(tower, x, y, damage, towerType, constructedTower) {
                     range = 150
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1311,16 +1334,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 45, towerType)
-                            wizardTowerLvl3(tower, x, y, damage, towerType)
+                            wizardTowerLvl3(tower, x, y, damage, towerType, constructedTower)
                         }, 4000)
                     } else {
-                        wizardTowerLvl4(tower, x, y, 65, towerType)
+                        wizardTowerLvl4(tower, x, y, 65, towerType, constructedTower)
                     }
-                }function wizardTowerLvl4(tower, x, y, damage, towerType) {
+                }function wizardTowerLvl4(tower, x, y, damage, towerType, constructedTower) {
                     range = 150
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1328,16 +1354,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 55, towerType)
-                            wizardTowerLvl4(tower, x, y, damage, towerType)
+                            wizardTowerLvl4(tower, x, y, damage, towerType, constructedTower)
                         }, 4000)
                     } else {
-                        wizardTowerLvl5(tower, x, y, 100, towerType)
+                        wizardTowerLvl5(tower, x, y, 100, towerType, constructedTower)
                     }
-                }function wizardTowerLvl5(tower, x, y, damage, towerType) {
+                }function wizardTowerLvl5(tower, x, y, damage, towerType, constructedTower) {
                     range = 150
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1346,17 +1375,20 @@
                         }
                         i++
                     }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 75, towerType)
-                            wizardTowerLvl5(tower, x, y, damage, towerType)
+                            wizardTowerLvl5(tower, x, y, damage, towerType, constructedTower)
                         }, 4000)
                     } else {
                         //archerTowerLvl2(tower, x, y, 35)
                     }
                 }
                 //--------------------------------------------------------------------------
-                function sniperTowerLvl1(tower, x, y, damage, towerType) {
+                function sniperTowerLvl1(tower, x, y, damage, towerType, constructedTower) {
                     range = 600
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1365,18 +1397,20 @@
                         }
                         i++
                     }
-                    
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 5, towerType)
-                            sniperTowerLvl1(tower, x, y, damage, towerType)
+                            sniperTowerLvl1(tower, x, y, damage, towerType, constructedTower)
                         }, 7000)
                     } else {
-                        sniperTowerLvl2(tower, x, y, 100, towerType)
+                        sniperTowerLvl2(tower, x, y, 100, towerType, constructedTower)
                         return i
                     }
                 }
-                function sniperTowerLvl2(tower, x, y, damage, towerType) {
+                function sniperTowerLvl2(tower, x, y, damage, towerType, constructedTower) {
                     range = 600
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1384,17 +1418,20 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 10, towerType)
-                            sniperTowerLvl2(tower, x, y, damage, towerType)
+                            sniperTowerLvl2(tower, x, y, damage, towerType, constructedTower)
                         }, 7000)
                     } else {
-                        sniperTowerLvl3(tower, x, y, 125, towerType)
+                        sniperTowerLvl3(tower, x, y, 125, towerType, constructedTower)
                     }
                 }
-                function sniperTowerLvl3(tower, x, y, damage, towerType) {
+                function sniperTowerLvl3(tower, x, y, damage, towerType, constructedTower) {
                     range = 600
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1402,16 +1439,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 15, towerType)
-                            sniperLvl3(tower, x, y, damage, towerType)
+                            sniperLvl3(tower, x, y, damage, towerType, constructedTower)
                         }, 7000)
                     } else {
-                        sniperTowerLvl4(tower, x, y, 150, towerType)
+                        sniperTowerLvl4(tower, x, y, 150, towerType, constructedTower)
                     }
-                }function sniperTowerLvl4(tower, x, y, damage, towerType) {
+                }function sniperTowerLvl4(tower, x, y, damage, towerType, constructedTower) {
                     range = 600
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1419,16 +1459,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 20, towerType)
-                            sniperTowerLvl4(tower, x, y, damage, towerType)
+                            sniperTowerLvl4(tower, x, y, damage, towerType, constructedTower)
                         }, 7000)
                     } else {
-                        sniperTowerLvl5(tower, x, y, 225, towerType)
+                        sniperTowerLvl5(tower, x, y, 225, towerType, constructedTower)
                     }
-                }function sniperTowerLvl5(tower, x, y, damage, towerType) {
+                }function sniperTowerLvl5(tower, x, y, damage, towerType, constructedTower) {
                     range = 600
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1437,17 +1480,20 @@
                         }
                         i++
                     }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 25, towerType)
-                            sniperTowerLvl5(tower, x, y, damage, towerType)
+                            sniperTowerLvl5(tower, x, y, damage, towerType, constructedTower)
                         }, 7000)
                     } else {
                         //archerTowerLvl2(tower, x, y, 35)
                     }
                 }
                 //--------------------------------------------------------------------------
-                function bombTowerLvl1(tower, x, y, damage, towerType) {
+                function bombTowerLvl1(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1456,18 +1502,20 @@
                         }
                         i++
                     }
-                    
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 1) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            bombTowerLvl1(tower, x, y, damage, towerType)
+                            bombTowerLvl1(tower, x, y, damage, towerType, constructedTower)
                         }, 10000)
                     } else {
-                        bombTowerLvl2(tower, x, y, 75, towerType)
+                        bombTowerLvl2(tower, x, y, 75, towerType, constructedTower)
                         return i
                     }
                 }
-                function bombTowerLvl2(tower, x, y, damage, towerType) {
+                function bombTowerLvl2(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1475,17 +1523,20 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 2) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            bombTowerLvl2(tower, x, y, damage, towerType)
+                            bombTowerLvl2(tower, x, y, damage, towerType, constructedTower)
                         }, 10000)
                     } else {
-                        bombTowerLvl3(tower, x, y, 100, towerType)
+                        bombTowerLvl3(tower, x, y, 100, towerType, constructedTower)
                     }
                 }
-                function bombTowerLvl3(tower, x, y, damage, towerType) {
+                function bombTowerLvl3(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1493,16 +1544,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 3) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            bombTowerLvl3(tower, x, y, damage, towerType)
+                            bombTowerLvl3(tower, x, y, damage, towerType, constructedTower)
                         }, 10000)
                     } else {
-                        bombTowerLvl4(tower, x, y, 125, towerType)
+                        bombTowerLvl4(tower, x, y, 125, towerType, constructedTower)
                     }
-                }function bombTowerLvl4(tower, x, y, damage, towerType) {
+                }function bombTowerLvl4(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1510,16 +1564,19 @@
                             checkForUpgradedTower = i
                         }
                         i++
+                    }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
                     }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 4) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            bombTowerLvl4(tower, x, y, damage, towerType)
+                            bombTowerLvl4(tower, x, y, damage, towerType, constructedTower)
                         }, 10000)
                     } else {
-                        bombTowerLvl5(tower, x, y, 200, towerType)
+                        bombTowerLvl5(tower, x, y, 200, towerType, constructedTower)
                     }
-                }function bombTowerLvl5(tower, x, y, damage, towerType) {
+                }function bombTowerLvl5(tower, x, y, damage, towerType, constructedTower) {
                     range = 200
                     i = 0
                     while (i < arrayOfTowers.length) {
@@ -1528,10 +1585,13 @@
                         }
                         i++
                     }
+                    if (arrayOfTowers[checkForUpgradedTower + 3] != constructedTower) {
+                        return i
+                    }
                     if (arrayOfTowers[checkForUpgradedTower + 2] == 5) {
                         setTimeout(function(){
                             checkForHit(tower, x, y, range, damage, 0, towerType)
-                            bombTowerLvl5(tower, x, y, damage, towerType)
+                            bombTowerLvl5(tower, x, y, damage, towerType, constructedTower)
                         }, 10000)
                     } else {
                         //archerTowerLvl2(tower, x, y, 35)
@@ -1587,7 +1647,7 @@
     		}
     	} 
     	for (var i = 1; i <= 20; i++) {
-    		y += "<div id=\"arrow" + i + "\" class=\"arrow\"><img src=\"arrow.jpeg\" height=\"25px;\" width=\"25px;\" /></div>"
+    		y += "<div id=\"arrow" + i + "\" class=\"arrow\"><img src=\"arrow.png\" height=\"25px;\" width=\"25px;\" /></div>"
     	}
     	for (var i = 1; i <= 20; i++) {
     		y += "<div id=\"magicBall" + i + "\" class=\"magic\"><img src=\"magicBall.png\" height=\"25px;\" width=\"25px;\"/></div>"
