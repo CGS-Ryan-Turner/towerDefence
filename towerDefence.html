@@ -390,10 +390,11 @@
 	    var explosion = 0
 	    var bombsDeleted = 0
 	    var constructedTower = 0
-	    var arrayOfEnemies = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
+	    var arrayOfEnemies = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy1d11", "enemy1d12", "enemy1d13", "enemy1d14", "enemy1d15", "enemy1d16", "enemy1d17", "enemy1d18", "enemy1d19", "enemy1d20", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40"]
 	    var arrayOfEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
 	    var arrayOfOriginalEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
 	    var lvl1 = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
+	    var lvl2 = ["enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10", "enemy2d11", "enemy2d12", "enemy2d13", "enemy2d14", "enemy2d15", "enemy2d16", "enemy2d17", "enemy2d18", "enemy2d19", "enemy2d20", "enemy2d21", "enemy2d22", "enemy2d23", "enemy2d24", "enemy2d25", "enemy2d26", "enemy2d27", "enemy2d28", "enemy2d29", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40"]
 	    var y = "";
 	    
 	    function dontBuildTower() {
@@ -459,43 +460,8 @@
                 x = x - 2/3
                 y = y - 2/3
                 
-                if (x < 100) {
-                    x = 0
-                } else if (x < 200) {
-                    x = 100
-                } else if (x < 300) {
-                    x = 200
-                } else if (x < 400) {
-                    x = 300
-                } else if (x < 500) {
-                    x = 400
-                } else if (x < 600) {
-                    x = 500
-                } else if (x < 700) {
-                    x = 600
-                } else if (x < 800) {
-                    x = 700
-                } else if (x < 900) {
-                    x = 800
-                } else {
-                    x = 900
-                }
-                
-                if (y < 100) {
-                    y = 0
-                } else if (y < 200) {
-                    y = 100
-                } else if (y < 300) {
-                    y = 200
-                } else if (y < 400) {
-                    y = 300
-                } else if (y < 500) {
-                    y = 400
-                } else if (y < 600) {
-                    y = 500
-                } else {
-                    y = 600
-                } 
+                x = Math.floor(x/100)*100
+                y = Math.floor(y/100)*100
                 console.log(x, y)
                 if (y >= 200 && y < 300 && x >= 0 && x < 300) {
                     alert("You cannot build a tower on roads!")
@@ -1641,7 +1607,7 @@
     		y +=  "<div id=\"aroundBlock" + i + "\" onclick = \"dontBuildTower()\"><div id=\"block" + i + "\"></div></div>"
     	}
     	for (var x = 1; x <= 2; x++) {
-    		for (var i = 1; i <= 10; i++) {
+    		for (var i = 1; i <= 40; i++) {
     
     			y += "<div id=\"enemy" + x + "d" + i + "\" class=\"enemy\" onclick=\"dontBuildTower()\" style=\"position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;\"><img src=\"enemy" + x + ".jpeg\" height=\"50px;\" width=\"50px;\" /></div>";
     		}
@@ -1660,6 +1626,16 @@
     	}
         
         document.getElementById("towerPlacing").innerHTML = y
-	    </script>
+	</script>
+	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-66023215-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
 </body>
 </html>
