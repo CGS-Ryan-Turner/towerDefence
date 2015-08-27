@@ -410,16 +410,74 @@
 	    var explosion = 0
 	    var bombsDeleted = 0
 	    var constructedTower = 0
-	    var arrayOfEnemies = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy1d11", "enemy1d12", "enemy1d13", "enemy1d14", "enemy1d15", "enemy1d16", "enemy1d17", "enemy1d18", "enemy1d19", "enemy1d20", "enemy1d21", "enemy1d22", "enemy1d23", "enemy1d24", "enemy1d25", "enemy1d26", "enemy1d27", "enemy1d28", "enemy1d29", "enemy1d30", "enemy1d31", "enemy1d32", "enemy1d33", "enemy1d34", "enemy1d35", "enemy1d36", "enemy1d37", "enemy1d38", "enemy1d39", "enemy1d40", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10", "enemy2d11", "enemy2d12", "enemy2d13", "enemy2d14", "enemy2d15", "enemy2d16", "enemy2d17", "enemy2d18", "enemy2d19", "enemy2d20", "enemy2d21", "enemy2d22", "enemy2d23", "enemy2d24", "enemy2d25", "enemy2d26", "enemy2d27", "enemy2d28", "enemy2d29", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40", "enemy3d1", "enemy3d2", "enemy3d3", "enemy3d4", "enemy3d5", "enemy3d6", "enemy3d7", "enemy3d8", "enemy3d9", "enemy3d10", "enemy3d11", "enemy3d12", "enemy3d13", "enemy3d14", "enemy3d15", "enemy3d16", "enemy3d17", "enemy3d18", "enemy3d19", "enemy3d20", "enemy3d21", "enemy3d22", "enemy3d23", "enemy3d24", "enemy3d25", "enemy3d26", "enemy3d27", "enemy3d28", "enemy3d29", "enemy3d30", "enemy3d31", "enemy3d32", "enemy3d33", "enemy3d34", "enemy3d35", "enemy3d36", "enemy3d37", "enemy3d38", "enemy3d39", "enemy3d40", "boss1d1", "boss1d2", "boss1d3", "boss1d4", "boss1d5", "boss1d6", "boss1d7", "boss1d8", "boss1d9", "boss1d10"]
-	    var arrayOfEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500]
-	    var arrayOfOriginalEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500]
+	    var allowedToDespawn = true
+	    type = 1
+	    arrayOfEnemies = []
+	    arrayOfEnemiesHealth = []
+	    arrayOfOriginalEnemiesHealth = []
+	    while (type <= 4) {
+	        i = 1
+	        while (i <= 100) {
+	            arrayOfEnemies.push("enemy" + type + "d" + i)
+	            if (type == 1) {
+	                arrayOfEnemiesHealth.push(100)
+	                arrayOfOriginalEnemiesHealth.push(100)
+	            } else if (type == 2) {
+	                arrayOfEnemiesHealth.push(150)
+	                arrayOfOriginalEnemiesHealth.push(150)
+	            } else if (type == 3){
+	                arrayOfEnemiesHealth.push(250)
+	                arrayOfOriginalEnemiesHealth.push(250)
+	            } else if (type == 4) {
+	                arrayOfEnemiesHealth.push(500)
+	                arrayOfOriginalEnemiesHealth.push(500)
+	            } else {
+	                console.log("Obviously there is something wrong here.")
+	            }
+	            i++
+	        }
+	        type++
+	    }
+	    i = 0
+	    type = 1
+	    while (type <= 2) {
+	        i = 1
+	        while (i <= 30) {
+	            arrayOfEnemies.push("boss" + type + "d" + i)
+	            if (type == 1) {
+	                arrayOfEnemiesHealth.push(1500)
+	                arrayOfOriginalEnemiesHealth.push(1500)
+	            } else if (type == 2) {
+	                arrayOfEnemiesHealth.push(2500)
+	                arrayOfOriginalEnemiesHealth.push(2500)
+	            } else {
+	                console.log("There is something else wrong.")
+	            }
+	            i++
+	        }
+	        type++
+	    }
+	    arrayOfEnemies.push("boss3d1")
+	    arrayOfEnemiesHealth.push(10000)
+	    arrayOfOriginalEnemiesHealth.push(10000)
+	    console.log(arrayOfEnemies)
+	    console.log(arrayOfEnemiesHealth)
+	    //var arrayOfEnemies = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy1d11", "enemy1d12", "enemy1d13", "enemy1d14", "enemy1d15", "enemy1d16", "enemy1d17", "enemy1d18", "enemy1d19", "enemy1d20", "enemy1d21", "enemy1d22", "enemy1d23", "enemy1d24", "enemy1d25", "enemy1d26", "enemy1d27", "enemy1d28", "enemy1d29", "enemy1d30", "enemy1d31", "enemy1d32", "enemy1d33", "enemy1d34", "enemy1d35", "enemy1d36", "enemy1d37", "enemy1d38", "enemy1d39", "enemy1d40", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10", "enemy2d11", "enemy2d12", "enemy2d13", "enemy2d14", "enemy2d15", "enemy2d16", "enemy2d17", "enemy2d18", "enemy2d19", "enemy2d20", "enemy2d21", "enemy2d22", "enemy2d23", "enemy2d24", "enemy2d25", "enemy2d26", "enemy2d27", "enemy2d28", "enemy2d29", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40", "enemy3d1", "enemy3d2", "enemy3d3", "enemy3d4", "enemy3d5", "enemy3d6", "enemy3d7", "enemy3d8", "enemy3d9", "enemy3d10", "enemy3d11", "enemy3d12", "enemy3d13", "enemy3d14", "enemy3d15", "enemy3d16", "enemy3d17", "enemy3d18", "enemy3d19", "enemy3d20", "enemy3d21", "enemy3d22", "enemy3d23", "enemy3d24", "enemy3d25", "enemy3d26", "enemy3d27", "enemy3d28", "enemy3d29", "enemy3d30", "enemy3d31", "enemy3d32", "enemy3d33", "enemy3d34", "enemy3d35", "enemy3d36", "enemy3d37", "enemy3d38", "enemy3d39", "enemy3d40", "boss1d1", "boss1d2", "boss1d3", "boss1d4", "boss1d5", "boss1d6", "boss1d7", "boss1d8", "boss1d9", "boss1d10"]
+	    //var arrayOfEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500]
+	    //var arrayOfOriginalEnemiesHealth = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500]
 	    var lvl1 = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10"]
-	    var lvl2 = ["enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10", "enemy2d11", "enemy2d12", "enemy2d13", "enemy2d14", "enemy2d15", "enemy2d16", "enemy2d17", "enemy2d18", "enemy2d19", "enemy2d20", "enemy2d21", "enemy2d22", "enemy2d23", "enemy2d24", "enemy2d25", "enemy2d26", "enemy2d27", "enemy2d28", "enemy2d29", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40"]
-	    var lvl3 = ["enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "enemy1d10", "enemy2d1", "enemy2d2", "enemy2d3", "enemy2d4", "enemy2d5", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10", "enemy2d1", "enemy3d1", "enemy3d2", "enemy3d3", "enemy3d4", "enemy3d5", "enemy3d6", "enemy3d7", "enemy3d8", "enemy3d9", "enemy3d10", "enemy2d11", "enemy2d12", "enemy2d13", "enemy2d14", "enemy2d15", "enemy2d16", "enemy2d17", "enemy2d18", "enemy2d19", "enemy2d20", "enemy1d11", "enemy1d12", "enemy1d13", "enemy1d14", "enemy1d15", "enemy1d16", "enemy1d17", "enemy1d18", "enemy1d19", "enemy1d20"]
-	    var lvl4 = ["enemy2d1", "enemy3d1", "enemy2d2", "enemy3d2", "enemy2d3", "enemy3d3", "enemy2d4", "enemy3d4", "enemy2d5", "enemy3d5", "enemy2d6", "enemy3d6", "enemy2d7", "enemy3d7", "enemy2d8", "enemy3d8", "enemy2d9", "enemy3d9", "enemy2d10", "enemy3d10", "enemy2d11", "enemy3d11", "enemy2d12", "enemy3d12", "enemy2d13", "enemy3d13", "enemy2d14", "enemy3d14", "enemy2d15", "enemy3d15", "enemy2d16", "enemy3d16", "enemy2d17", "enemy3d17", "enemy2d18", "enemy3d18", "enemy2d19", "enemy3d19", "enemy2d20", "enemy3d20", "enemy2d21", "enemy3d21", "enemy2d22", "enemy3d22", "enemy2d23", "enemy3d23", "enemy2d24", "enemy3d24", "enemy2d25", "enemy3d25", "enemy2d26", "enemy3d26", "enemy2d27", "enemy3d27", "enemy2d28", "enemy3d28", "enemy2d29", "enemy3d29", "enemy2d30", "enemy3d30", "enemy2d31", "enemy3d31", "enemy2d32", "enemy3d32", "enemy2d33", "enemy3d33", "enemy2d34", "enemy3d34", "enemy2d35"]
-	    var lvl5 = ["enemy3d1", "enemy3d2", "enemy3d3", "enemy3d4", "enemy3d5", "enemy3d6", "enemy3d7", "enemy3d8", "enemy3d9", "enemy3d10", "enemy3d11", "enemy3d12", "enemy3d13", "enemy3d14", "enemy3d15", "boss1d1", "enemy3d16", "enemy3d17", "enemy3d18", "enemy3d19", "enemy3d20", "enemy3d21", "enemy3d22", "enemy3d23", "enemy3d24", "enemy3d25", "enemy3d26", "enemy3d27", "enemy3d28", "enemy3d29", "enemy3d30", "boss1d2", "boss1d3", "enemy3d31", "enemy3d32", "enemy3d33", "enemy3d34", "enemy3d35", "enemy3d36", "enemy3d37", "enemy3d38", "enemy3d39", "enemy3d40", "boss1d4", "boss1d5"]
+	    var lvl2 = ["enemy2d11", "enemy2d12", "enemy2d13", "enemy2d14", "enemy2d15", "enemy2d16", "enemy2d17", "enemy2d18", "enemy2d19", "enemy2d20", "enemy2d21", "enemy2d22", "enemy2d23", "enemy2d24", "enemy2d25", "enemy2d26", "enemy2d27", "enemy2d28", "enemy2d29", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40", "enemy2d41", "enemy2d42", "enemy2d43", "enemy2d44", "enemy2d45", "enemy2d46", "enemy2d47", "enemy2d48", "enemy2d49", "enemy2d50"]
+	    var lvl3 = ["enemy1d11", "enemy1d12", "enemy1d13", "enemy1d14", "enemy1d15", "enemy1d16", "enemy1d17", "enemy1d18", "enemy1d19", "enemy1d20", "enemy2d51", "enemy2d52", "enemy2d53", "enemy2d54", "enemy2d55", "enemy2d56", "enemy2d57", "enemy2d58", "enemy2d59", "enemy2d60", "enemy3d1", "enemy3d2", "enemy3d3", "enemy3d4", "enemy3d5", "enemy3d6", "enemy3d7", "enemy3d8", "enemy3d9", "enemy3d10", "enemy2d61", "enemy2d62", "enemy2d63", "enemy2d64", "enemy2d65", "enemy2d66", "enemy2d67", "enemy2d68", "enemy2d69", "enemy2d70", "enemy1d21", "enemy1d22", "enemy1d23", "enemy1d24", "enemy1d25", "enemy1d26", "enemy1d27", "enemy1d28", "enemy1d29", "enemy1d30"]
+	    var lvl4 = ["enemy2d71", "enemy3d11", "enemy2d72", "enemy3d12", "enemy2d73", "enemy3d13", "enemy2d74", "enemy3d14", "enemy2d75", "enemy3d15", "enemy2d76", "enemy3d16", "enemy2d77", "enemy3d17", "enemy2d78", "enemy3d18", "enemy2d79", "enemy3d19", "enemy2d80", "enemy3d20", "enemy2d81", "enemy3d21", "enemy2d82", "enemy3d22", "enemy2d83", "enemy3d23", "enemy2d84", "enemy3d24", "enemy2d85", "enemy3d25", "enemy2d86", "enemy3d26", "enemy2d87", "enemy3d27", "enemy2d88", "enemy3d28", "enemy2d89", "enemy3d29", "enemy2d90", "enemy3d30", "enemy2d91", "enemy3d31", "enemy2d92", "enemy3d32", "enemy2d93", "enemy3d33", "enemy2d94", "enemy3d34", "enemy2d95", "enemy3d35", "enemy2d96", "enemy3d36", "enemy2d97", "enemy3d37", "enemy2d98", "enemy3d38", "enemy2d99", "enemy3d39", "enemy2d100", "enemy3d40", "enemy2d1", "enemy3d41", "enemy2d2", "enemy3d42", "enemy2d3", "enemy3d43", "enemy2d4", "enemy3d44", "enemy2d5"]
+	    var lvl5 = ["enemy3d45", "enemy3d46", "enemy3d47", "enemy3d48", "enemy3d49", "enemy3d50", "enemy3d51", "enemy3d52", "enemy3d53", "enemy3d54", "enemy3d55", "enemy3d56", "enemy3d57", "enemy3d58", "enemy3d59", "boss1d1", "enemy3d60", "enemy3d61", "enemy3d62", "enemy3d63", "enemy3d64", "enemy3d65", "enemy3d66", "enemy3d67", "enemy3d68", "enemy3d69", "enemy3d70", "enemy3d71", "enemy3d72", "enemy3d73", "enemy3d74", "boss1d2", "boss1d3", "enemy3d75", "enemy3d76", "enemy3d77", "enemy3d78", "enemy3d79", "enemy3d80", "enemy3d81", "enemy3d82", "enemy3d83", "enemy3d84", "boss1d4", "boss1d5"]
+	    var lvl6 = ["boss1d6", "boss1d7", "boss1d8", "enemy1d31", "enemy1d32", "enemy1d33", "enemy1d34", "enemy1d35", "boss1d9", "boss1d10", "boss1d11", "boss1d12", "enemy3d85", "enemy3d86", "enemy3d87", "enemy3d88", "enemy3d89", "boss1d13", "boss1d14", "boss1d15"]
+	    var lvl7 = ["enemy4d1", "enemy4d2", "enemy4d3", "enemy4d4", "enemy4d5", "enemy4d6", "enemy4d7", "enemy4d8", "enemy4d9", "enemy4d10", "enemy4d11", "enemy4d12", "enemy4d13", "enemy4d14", "enemy4d15", "enemy4d16", "enemy4d17", "enemy4d18", "enemy4d19", "enemy4d20", "enemy4d21", "enemy4d22", "enemy4d23", "enemy4d24", "enemy4d25", "enemy4d26", "enemy4d27", "enemy4d28", "enemy4d29", "enemy4d30", "enemy4d31", "enemy4d32", "enemy4d33", "enemy4d34", "enemy4d35", "enemy4d36", "enemy4d37", "enemy4d38", "enemy4d39", "enemy4d40", "enemy4d41", "enemy4d42", "enemy4d43", "enemy4d44", "enemy4d45", "enemy4d46", "enemy4d47", "enemy4d48", "enemy4d49", "enemy4d50", "enemy4d51", "enemy4d52", "enemy4d53", "enemy4d54", "enemy4d55", "enemy4d56", "enemy4d57", "enemy4d58", "enemy4d59", "enemy4d60", "enemy4d61", "enemy4d62", "enemy4d63", "enemy4d64", "enemy4d65", "enemy4d66", "enemy4d67", "enemy4d68", "enemy4d69"]
+	    var lvl8 = ["enemy4d70", "enemy4d71", "enemy4d72", "enemy4d73", "enemy4d74", "boss1d16", "boss1d17", "boss1d18", "boss1d19", "boss1d20", "enemy4d75", "enemy4d76", "enemy4d77", "enemy4d78", "enemy4d79", "enemy1d36", "enemy1d37", "enemy1d38", "enemy1d39", "enemy1d40", "enemy2d6", "enemy2d7", "enemy2d8", "enemy2d9", "enemy2d10", "enemy3d90", "enemy3d91", "enemy3d92", "enemy3d93", "enemy3d94", "enemy4d80", "enemy4d81", "enemy4d82", "enemy4d83", "enemy4d84", "boss1d21", "boss1d22", "boss1d23", "boss1d24", "boss1d25"]
+	    var lvl9 = ["enemy1d41", "enemy2d11", "enemy3d95", "enemy4d85", "boss1d26", "boss2d1", "enemy1d42", "enemy2d12", "enemy3d96", "enemy4d86", "boss1d27", "boss2d2", "enemy1d43", "enemy2d13", "enemy3d97", "enemy4d87", "boss1d28", "boss2d3", "enemy1d44", "enemy2d14", "enemy3d98", "enemy4d88", "boss1d29", "boss2d4", "enemy1d45", "enemy2d15", "enemy3d99", "enemy4d89", "boss1d30", "boss2d5", "enemy1d46", "enemy2d16", "enemy3d100", "enemy4d90", "boss1d1", "boss2d6", "enemy1d47", "enemy2d17", "enemy3d1", "enemy4d91", "boss1d2", "boss2d7"]
+	    var lvl10 = ["enemy1d48", "enemy1d49", "enemy1d50", "enemy1d51", "enemy1d52", "enemy1d53", "enemy1d54", "enemy1d55", "enemy1d56", "enemy1d57", "enemy1d58", "enemy1d59", "enemy1d60", "enemy1d61", "enemy1d62", "enemy1d63", "enemy1d64", "enemy1d65", "enemy1d66", "enemy1d67", "enemy1d68", "enemy1d69", "enemy1d70", "enemy1d71", "enemy1d72", "enemy1d73", "enemy1d74", "enemy1d75", "enemy1d76", "enemy1d77", "enemy1d78", "enemy2d18", "enemy2d19", "enemy2d20", "enemy2d21", "enemy2d22", "enemy2d23", "enemy2d24", "enemy2d25", "enemy2d26", "enemy2d27", "enemy2d28", "enemy2d29", "enemy2d30", "enemy2d31", "enemy2d32", "enemy2d33", "enemy2d34", "enemy2d35", "enemy2d36", "enemy2d37", "enemy2d38", "enemy2d39", "enemy2d40", "enemy2d41", "enemy2d42", "enemy2d43", "enemy2d44", "enemy2d45", "enemy2d46", "enemy2d47", "enemy2d48", "enemy3d2", "enemy3d3", "enemy3d4", "enemy3d5", "enemy3d6", "enemy3d7", "enemy3d8", "enemy3d9", "enemy3d10", "enemy3d11", "enemy3d12", "enemy3d13", "enemy3d14", "enemy3d15", "enemy3d16", "enemy3d17", "enemy3d18", "enemy3d19", "enemy3d20", "enemy3d21", "enemy3d22", "enemy3d23", "enemy3d24", "enemy3d25", "enemy3d26", "enemy3d27", "enemy3d28", "enemy3d29", "enemy3d30", "enemy3d31", "enemy3d32", "enemy4d92", "enemy4d93", "enemy4d94", "enemy4d95", "enemy4d96", "enemy4d97", "enemy4d98", "enemy4d99", "enemy4d100", "enemy4d1", "enemy4d2", "enemy4d3", "enemy4d4", "enemy4d5", "enemy4d6", "enemy4d7", "enemy4d8", "enemy4d9", "enemy4d10", "enemy4d11", "enemy4d12", "enemy4d13", "enemy4d14", "enemy4d15", "enemy4d16", "enemy4d17", "enemy4d18", "enemy4d19", "enemy4d20", "enemy4d21", "enemy4d22", "boss1d3", "boss1d4", "boss1d5", "boss1d6", "boss1d7", "boss1d8", "boss1d9", "boss1d10", "boss1d11", "boss1d12", "boss1d13", "boss1d14", "boss1d15", "boss1d16", "boss1d17", "boss1d18", "boss1d19", "boss1d20", "boss1d21", "boss1d22", "boss1d23", "boss1d24", "boss1d25", "boss1d26", "boss1d27", "boss1d28", "boss1d29", "boss1d30", "boss1d1", "boss1d2", "boss1d3", "boss2d8", "boss2d9", "boss2d10", "boss2d11", "boss2d12", "boss2d13", "boss2d14", "boss2d15", "boss2d16", "boss2d17", "boss2d18", "boss2d19", "boss2d20", "boss2d21", "boss2d22", "boss2d23", "boss2d24", "boss2d25", "boss2d26", "boss2d27", "boss2d28", "boss2d29", "boss2d30", "boss2d1", "boss2d2", "boss2d3", "boss2d4", "boss2d5", "boss2d6", "boss2d7", "boss2d8", "enemy1d1", "enemy1d2", "enemy1d3", "enemy1d4", "enemy1d5", "enemy1d6", "enemy1d7", "enemy1d8", "enemy1d9", "boss3d1"]
 	    var y = "";
-	    
+        
+	
 	    function dontBuildTower() {
 	        alert("You cannot build a tower on roads!")
 	        allowedToBuildTower = false
@@ -439,13 +497,13 @@
             elemDiv.id = place
             elemDiv.class = towerName
             if (towerName == "archer") {
-                elemDiv.src = "archerTowerLvl1.jpg"
+                elemDiv.src = "archerTowerLvl1.png"
             } if (towerName == "magician") {
-                elemDiv.src = "magicianTowerLvl1.jpg"
+                elemDiv.src = "magicianTowerLvl1.png"
             } if (towerName == "sniper") {
-                elemDiv.src = "sniperTowerLvl1.jpg"
+                elemDiv.src = "sniperTowerLvl1.png"
             } if (towerName == "bomb") {
-                elemDiv.src = "bombTowerLvl1.jpg"
+                elemDiv.src = "bombTowerLvl1.png"
             }
             towerPlacingDiv.appendChild(elemDiv);
 	        //document.getElementById("towerPlacing").innerHTML+="<div id = '" + place + "'; class = '" + towerName + "'; style='width:100px;height:100px;top:" + arrayToReturn[1] + "px;left:" + arrayToReturn[0] + "px;position:fixed;'><img id = '" + place + "" + towerName + "'; src=" + towerName + "TowerLvl1.jpg height=100px; width=100px; /></div>"
@@ -491,7 +549,7 @@
                 if (y >= 700) {
                     y = 600
                 }
-                console.log(x, y)
+                //console.log(x, y)
                 if (y >= 200 && y < 300 && x >= 0 && x < 300) {
                     alert("You cannot build a tower on roads!")
                     //console.log("1")
@@ -804,10 +862,10 @@
         }
                 
         function upgrade() {
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+            //console.log("!!!!!!!!!!!!!!!!!!!!!!!")
             var thingToUpgrade = "" + x + "" + y
             var towerToUpgrade = document.getElementById(thingToUpgrade)
-            console.log(towerToUpgrade + '| |' + towerToUpgrade.src)
+            //console.log(towerToUpgrade + '| |' + towerToUpgrade.src)
             var i = 0
             var towerTypeToUpgrade = ""
             var allowedToUpgrade = false
@@ -817,10 +875,10 @@
                     if (parseInt(arrayOfTowers[i + 2]) != 5) {
                         levelToUpgrade = parseInt(arrayOfTowers[i + 2]) + 1
                         towerTypeToUpgrade = arrayOfTowers[i + 1]
-                        console.log(" " + i + " " + arrayOfTowers[i])
+                        //console.log(" " + i + " " + arrayOfTowers[i])
                         arrayOfTowers[i + 2] = parseInt(arrayOfTowers[i + 2]) + 1
                         allowedToUpgrade = true
-                        console.log(arrayOfTowers[i] + "" + arrayOfTowers[i + 1])
+                        //console.log(arrayOfTowers[i] + "" + arrayOfTowers[i + 1])
                         towerToUpgrade = document.getElementById(arrayOfTowers[i])
                     } else {
                         alert("This is that tower's max level! Upgrade failed!")
@@ -828,12 +886,12 @@
                 }
                 i = i + 4
             }
-            console.log(towerToUpgrade + '| |' + towerToUpgrade.src)
+            //console.log(towerToUpgrade + '| |' + towerToUpgrade.src)
             if (allowedToUpgrade) {
-                console.log("!!!! " + levelToUpgrade + " " + towerTypeToUpgrade)
-                imageToUpgrade = "" + towerTypeToUpgrade + "TowerLvl" + levelToUpgrade + ".jpg"
+                //console.log("!!!! " + levelToUpgrade + " " + towerTypeToUpgrade)
+                imageToUpgrade = "" + towerTypeToUpgrade + "TowerLvl" + levelToUpgrade + ".png"
                 //console.log(imageToUpgrade)
-                console.log(towerToUpgrade.src + " " + thingToUpgrade + " " + imageToUpgrade)
+                //console.log(towerToUpgrade.src + " " + thingToUpgrade + " " + imageToUpgrade)
                 towerToUpgrade.src = imageToUpgrade
             }
             return arrayOfTowers
@@ -843,6 +901,7 @@
             console.log("[]PLAY[]")
             if (canPlay) {
                 canPlay = false
+                allowedToDeSpawn = false
                 changePlayButton = document.getElementById("playButton")
                 changePlayButton.style.boxShadow = "0px 0px 0px black"
                 changePlayButton.style.top = "20px"
@@ -854,7 +913,7 @@
                 var numberOfEnemiesTaken = 0
                 lvl++
                 lvlToPlay = "lvl" + lvl
-                if (lvlToPlay == "lvl5") {
+                if (lvlToPlay == "lvl5" || lvlToPlay == "lvl6") {
                     displayBossWave = document.getElementById("bossWave")
                     console.log("Boss Wave!")
                     displayBossWave.style.visibility = "visible";
@@ -874,27 +933,38 @@
                     //lvlToPlay = "lvl" + lvl
                     console.log(lvlToPlay)
                     if (lvlToPlay == "lvl1") {
-                        numberOfEnemies = 20 
+                        numberOfEnemies = lvl1.length 
                     } else if (lvlToPlay == "lvl2") {
-                        numberOfEnemies = 40
+                        numberOfEnemies = lvl2.length
                     } else if (lvlToPlay == "lvl3") {
-                        numberOfEnemies = 50
+                        numberOfEnemies = lvl3.length
                     } else if (lvlToPlay == "lvl4") {
-                        numberOfEnemies = 69
+                        numberOfEnemies = lvl4.length
+                    } else if (lvlToPlay == "lvl5") {
+                        numberOfEnemies = lvl5.length
+                    } else if (lvlToPlay == "lvl6") {
+                        numberOfEnemies = lvl6.length
+                    } else if (lvlToPlay == "lvl7") {
+                        numberOfEnemies = lvl7.length
+                    } else if (lvlToPlay == "lvl8") {
+                        numberOfEnemies = lvl8.length
+                    } else if (lvlToPlay == "lvl9") {
+                        numberOfEnemies = lvl9.length
                     } else {
-                        numberOfEnemies = 45
+                        numberOfEnemies = lvl10.length
                     }
-                    while (i < numberOfEnemies - 1) {
+                    while (i < numberOfEnemies) {
                         setTimeout(function(){
                             numberOfEnemiesPrinted++
                             changePlayButton = document.getElementById("playButton")
                             changePlayButton.innerHTML = "<br><br><strong>PLAY: " + (numberOfEnemies - numberOfEnemiesPrinted) + "</strong>"
-                            if (numberOfEnemiesPrinted + 1 == numberOfEnemies) {
+                            if (numberOfEnemiesPrinted == numberOfEnemies) {
                                 canPlay = true;
+                                allowedToDeSpawn = true
                                 changePlayButton = document.getElementById("playButton")
                                 changePlayButton.style.backgroundColor = "yellow";
                                 changePlayButton.innerHTML = "<br><br><strong>PLAY</strong>"
-                                console.log("Wave Despawned")
+                                //console.log("Wave Despawned")
                             }
                             
                             //console.log("" + lvl1[numberOfEnemiesPrinted - 1] + " " + numberOfEnemiesPrinted + "" + " " + numberOfEnemies)
@@ -906,28 +976,49 @@
                                 var enemyToSpawn = document.getElementById(lvl3[numberOfEnemiesPrinted - 1])
                             } else if (lvlToPlay == "lvl4") {
                                 var enemyToSpawn = document.getElementById(lvl4[numberOfEnemiesPrinted - 1])
-                            } else {
+                            } else if (lvlToPlay == "lvl5") {
                                 var enemyToSpawn = document.getElementById(lvl5[numberOfEnemiesPrinted - 1])
+                            } else if (lvlToPlay == "lvl6") {
+                                var enemyToSpawn = document.getElementById(lvl6[numberOfEnemiesPrinted - 1])
+                            } else if (lvlToPlay == "lvl7") {
+                                var enemyToSpawn = document.getElementById(lvl7[numberOfEnemiesPrinted - 1])
+                            } else if (lvlToPlay == "lvl8") {
+                                var enemyToSpawn = document.getElementById(lvl8[numberOfEnemiesPrinted - 1])
+                            } else if (lvlToPlay == "lvl9") {
+                                var enemyToSpawn = document.getElementById(lvl9[numberOfEnemiesPrinted - 1])
+                            } else {
+                                var enemyToSpawn = document.getElementById(lvl10[numberOfEnemiesPrinted - 1])
                             }
+                            console.log(enemyToSpawn)
                             enemyToSpawn.style.webkitAnimationName = "track"
                             setTimeout(function(){
-                                
-                                numberOfEnemiesTaken++
-                                //console.log(delay + " " + numberOfEnemiesTaken + " ")
-                                //console.log("despawned")
-                                if (lvlToPlay == "lvl1") {
-                                    var enemyToDeSpawn = document.getElementById(lvl1[numberOfEnemiesTaken - 1])
-                                } else if (lvlToPlay == "lvl2") {
-                                    var enemyToDeSpawn = document.getElementById(lvl2[numberOfEnemiesTaken - 1])
-                                } else if (lvlToPlay == "lvl3") {
-                                    var enemyToDeSpawn = document.getElementById(lvl3[numberOfEnemiesTaken - 1])
-                                } else if (lvlToPlay == "lvl4") {
-                                    var enemyToDeSpawn = document.getElementById(lvl4[numberOfEnemiesTaken - 1])
-                                } else {
-                                    var enemyToDeSpawn = document.getElementById(lvl5[numberOfEnemiesTaken - 1])
+                                if (allowedToDeSpawn) {
+                                    numberOfEnemiesTaken++
+                                    //console.log(delay + " " + numberOfEnemiesTaken + " ")
+                                    //console.log("despawned")
+                                    if (lvlToPlay == "lvl1") {
+                                        var enemyToDeSpawn = document.getElementById(lvl1[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl2") {
+                                        var enemyToDeSpawn = document.getElementById(lvl2[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl3") {
+                                        var enemyToDeSpawn = document.getElementById(lvl3[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl4") {
+                                        var enemyToDeSpawn = document.getElementById(lvl4[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl5") {
+                                        var enemyToDeSpawn = document.getElementById(lvl5[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl6") {
+                                        var enemyToDeSpawn = document.getElementById(lvl6[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl7") {
+                                        var enemyToDeSpawn = document.getElementById(lvl7[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl8") { 
+                                        var enemyToDeSpawn = document.getElementById(lvl8[numberOfEnemiesTaken - 1])
+                                    } else if (lvlToPlay == "lvl9") {
+                                        var enemyToDeSpawn = document.getElementById(lvl9[numberOfEnemiesTaken - 1])
+                                    } else {
+                                        var enemyToDeSpawn = document.getElementById(lvl10[numberOfEnemiesTaken - 1])
+                                    }
+                                    enemyToDeSpawn.style.webkitAnimationName = "none"
                                 }
-                                
-                                enemyToDeSpawn.style.webkitAnimationName = "none"
                                 
                             }, delay * 25)
                             
@@ -939,7 +1030,7 @@
             }
         }
         function checkForHit(tower, x, y, range, damage, damageMultiplier, towerType) {
-            var i = 0
+            var i = 1
             
             random = Math.floor((Math.random() * 100) + 1)
             if (random < damageMultiplier) {
@@ -952,6 +1043,7 @@
             
             //console.log("Checking for hit from " + tower + " tower")
             while (i < arrayOfEnemies.length) {
+                //console.log(arrayOfEnemies[i])
                 var towerInRange = doElsCollide(tower, arrayOfEnemies[i], range)
                 
                 if (towerInRange[0]) {
@@ -1131,6 +1223,7 @@
                                 document.body.appendChild(elemDiv);
                                 
                                 while (i < arrayOfEnemies.length) {
+                                    
                                     var bombSplash = doElsCollide(elemDivId, arrayOfEnemies[i], 0)
                                     if (bombSplash[0]) {
                                         hurtEnemy(arrayOfEnemies[i], damage/2, i)
@@ -1152,10 +1245,11 @@
             }
         }
                 function doElsCollide(el1, el2, range) {
+                    //console.log(el1, el2, i)
                     //console.log("Checking For Collision")
                     el1 = document.getElementById(el1)
                     el2 = document.getElementById(el2)
-                    
+                    //console.log(el1, el2)
                     el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
                     el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
                     el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
@@ -1206,8 +1300,8 @@
                 };
                 function hurtEnemy(enemy, damage, i) {
                     //console.log("Damaging Enemy " + enemy + " at damage " + damage + " and " + i)
+                    //console.log(arrayOfEnemiesHealth[i], arrayOfEnemiesHealth[i] - damage, arrayOfEnemies[i], i, arrayOfEnemiesHealth.length, arrayOfEnemies.length)
                     arrayOfEnemiesHealth[i] = arrayOfEnemiesHealth[i] - damage
-                    
                     if (arrayOfEnemiesHealth[i] <= 0) {
                         var enemyToDeSpawn = document.getElementById(arrayOfEnemies[i])
                         enemyToDeSpawn.style.webkitAnimationName = "none"
@@ -1683,18 +1777,19 @@
     	for (var i = 1; i <=7; i++) {
     		y +=  "<div id=\"aroundBlock" + i + "\" onclick = \"dontBuildTower()\"><div id=\"block" + i + "\"></div></div>"
     	}
-    	for (var x = 1; x <= 3; x++) {
-    		for (var i = 1; i <= 40; i++) {
+    	for (var x = 1; x <= 4; x++) {
+    		for (var i = 1; i <= 100; i++) {
     
     			y += "<div id=\"enemy" + x + "d" + i + "\" class=\"enemy\" onclick=\"dontBuildTower()\" style=\"position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;\"><img src=\"enemy" + x + ".jpeg\" height=\"50px;\" width=\"50px;\" /></div>";
     		}
     	}
     	for (var x = 1; x <= 2; x++) {
-    	    for (var i = 1; i <= 10; i++) {
+    	    for (var i = 1; i <= 30; i++) {
     
     			y += "<div id=\"boss" + x + "d" + i + "\" class=\"enemy\" onclick=\"dontBuildTower()\" style=\"position:fixed;width:50px;height:50px;top:-1000px;left:-1000px;\"><img src=\"boss" + x + ".jpeg\" height=\"50px;\" width=\"50px;\" /></div>";
     		}
     	}
+    	y += "<div id=\"boss3d1\" class=\"enemy\" onclick=\"dontBuildTower()\" style=\"position:fixed;width:75px;height:75px;top:-1000px;left:-1000px;\"><img src=\"boss3.jpg\" height=\"75px;\" width=\"75px;\" /></div>";
     	for (var i = 1; i <= 100; i++) {
     		y += "<div id=\"arrow" + i + "\" class=\"arrow\"><img src=\"arrow.png\" height=\"25px;\" width=\"25px;\" /></div>"
     	}
